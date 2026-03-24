@@ -1,24 +1,935 @@
-<!DOCTYPE html>
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Defining Space — Industrial Minimalism</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:   #0a0a0a;
+      --white:   #f5f5f0;
+      --gray:    #888;
+      --light:   #e8e8e4;
+      --accent:  #c8a96e;
+      --danger:  #c0392b;
+      --success: #27ae60;
+      --font:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    body { font-family: var(--font); background: var(--white); color: var(--black); }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: var(--font); }
+    img { max-width: 100%; display: block; }
+
+    /* ===== MARQUEE ===== */
+    .marquee-wrap { background: var(--black); color: var(--white); padding: 10px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-track { display: inline-block; animation: marquee 22s linear infinite; }
+    .marquee-track span { margin: 0 32px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 48px; border-bottom: 1px solid var(--light);
+      position: sticky; top: 0; background: var(--white); z-index: 100;
+    }
+    .nav-logo { font-size: 18px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); transition: color .2s; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-actions { display: flex; gap: 20px; align-items: center; }
+    .nav-actions button { background: none; border: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); transition: color .2s; }
+    .nav-actions button:hover { color: var(--black); }
+    .cart-btn { position: relative; }
+    .cart-count { position: absolute; top: -8px; right: -10px; background: var(--accent); color: var(--black); border-radius: 50%; width: 18px; height: 18px; font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+
+    /* ===== HERO ===== */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; overflow: hidden; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; }
+    .hero-tag { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; }
+    .hero-title { font-size: clamp(40px,5vw,72px); font-weight: 700; line-height: 1.05; letter-spacing: -1px; margin-bottom: 28px; }
+    .hero-sub { font-size: 15px; color: var(--gray); line-height: 1.8; max-width: 380px; margin-bottom: 40px; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 12px; background: var(--black); color: var(--white); padding: 16px 32px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; border: none; transition: background .2s, color .2s; width: fit-content; }
+    .hero-cta:hover { background: var(--accent); color: var(--black); }
+    .hero-img-wrap { position: relative; overflow: hidden; background: #d4cfc8; }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 120px; }
+
+    /* ===== SECTION HEADER ===== */
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; padding: 64px 48px 24px; }
+    .section-title { font-size: clamp(24px,3vw,40px); font-weight: 700; letter-spacing: -0.5px; }
+    .section-sub { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+    .view-all { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); border: none; border-bottom: 1px solid var(--gray); padding-bottom: 2px; background: none; transition: color .2s, border-color .2s; }
+    .view-all:hover { color: var(--black); border-color: var(--black); }
+
+    /* ===== FILTER BAR ===== */
+    .filter-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 0 48px 32px; }
+    .search-wrap { position: relative; display: flex; align-items: center; flex: 1; min-width: 200px; max-width: 300px; }
+    .search-icon { position: absolute; left: 12px; font-size: 13px; pointer-events: none; color: var(--gray); }
+    .search-input { width: 100%; padding: 10px 34px; border: 1px solid var(--light); background: var(--white); font-size: 13px; font-family: var(--font); outline: none; transition: border-color .2s; color: var(--black); }
+    .search-input:focus { border-color: var(--black); }
+    .search-clear { position: absolute; right: 10px; background: none; border: none; color: var(--gray); font-size: 12px; display: none; }
+    .search-clear:hover { color: var(--black); }
+    .filter-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { background: none; border: 1px solid var(--light); padding: 8px 18px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); transition: all .2s; }
+    .tag:hover { border-color: var(--black); color: var(--black); }
+    .tag.active { background: var(--black); color: var(--white); border-color: var(--black); }
+    .sort-wrap select { padding: 9px 14px; border: 1px solid var(--light); background: var(--white); font-size: 11px; letter-spacing: 1px; font-family: var(--font); color: var(--gray); outline: none; cursor: pointer; transition: border-color .2s; }
+    .sort-wrap select:focus { border-color: var(--black); }
+    .filter-result { font-size: 11px; letter-spacing: 1px; color: var(--gray); margin-left: auto; }
+
+    /* ===== PRODUCT GRID ===== */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 2px; padding: 0 48px 80px; }
+    .product-card { position: relative; background: var(--white); border: 1px solid var(--light); overflow: hidden; transition: box-shadow .3s; animation: fadeUp .35s ease both; }
+    .product-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.1); }
+    @keyframes fadeUp { from { opacity:0; transform: translateY(14px); } to { opacity:1; transform: translateY(0); } }
+    .product-badge { position: absolute; top: 14px; left: 14px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 10px; font-weight: 700; z-index: 2; }
+    .badge-new { background: var(--black); color: var(--white); }
+    .badge-sale { background: var(--danger); color: var(--white); }
+    .badge-pre { background: var(--accent); color: var(--black); }
+
+    /* 多圖輪播 */
+    .product-img-wrap { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; background: #e8e5e0; }
+    .slide-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s ease; }
+    .slide-img.active { opacity: 1; }
+    .product-img-placeholder { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 72px; background: #e8e5e0; transition: transform .4s; }
+    .product-card:hover .product-img-placeholder { transform: scale(1.04); }
+    .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.45); color: #fff; border: none; width: 32px; height: 32px; font-size: 15px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; z-index: 3; }
+    .product-img-wrap:hover .slide-btn { opacity: 1; }
+    .slide-btn.prev { left: 8px; }
+    .slide-btn.next { right: 8px; }
+    .slide-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.5); cursor: pointer; transition: background .2s; border: none; padding: 0; }
+    .dot.active { background: #fff; }
+
+    .product-info { padding: 20px 20px 24px; }
+    .product-cat { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+    .product-name { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+    .product-price { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .price-current { font-size: 16px; font-weight: 700; }
+    .price-old { font-size: 13px; color: var(--gray); text-decoration: line-through; }
+    .product-actions { display: flex; gap: 8px; }
+    .btn-add { flex: 1; background: var(--black); color: var(--white); border: none; padding: 12px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; transition: background .2s, color .2s; }
+    .btn-add:hover { background: var(--accent); color: var(--black); }
+    .btn-wish { width: 44px; background: none; border: 1px solid var(--light); font-size: 16px; transition: border-color .2s, color .2s; }
+    .btn-wish:hover { border-color: var(--black); }
+    .btn-wish.wished { color: #e74c3c; border-color: #e74c3c; }
+
+    /* 無結果 */
+    .no-result { grid-column: 1/-1; text-align: center; padding: 80px 20px; color: var(--gray); }
+    .no-result span { font-size: 48px; display: block; margin-bottom: 16px; }
+    .no-result p { font-size: 13px; margin-bottom: 20px; }
+    .btn-clear-filter { padding: 10px 24px; border: 1px solid var(--black); background: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+    .btn-clear-filter:hover { background: var(--black); color: var(--white); }
+
+    /* ===== BANNER ===== */
+    .banner { background: var(--black); color: var(--white); display: grid; grid-template-columns: 1fr 1fr; min-height: 300px; margin: 0 48px 80px; }
+    .banner-text { padding: 60px 56px; display: flex; flex-direction: column; justify-content: center; }
+    .banner-text h2 { font-size: 32px; font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
+    .banner-text p { color: #999; font-size: 14px; line-height: 1.8; margin-bottom: 28px; }
+    .btn-white { display: inline-block; background: var(--white); color: var(--black); padding: 13px 26px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; border: none; width: fit-content; transition: background .2s; }
+    .btn-white:hover { background: var(--accent); }
+    .banner-img { background: #1a1a1a; display: flex; align-items: center; justify-content: center; font-size: 90px; overflow: hidden; }
+    .banner-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ===== FOOTER ===== */
+    footer { border-top: 1px solid var(--light); padding: 56px 48px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+    .footer-brand h3 { font-size: 15px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+    .footer-brand p { font-size: 13px; color: var(--gray); line-height: 1.9; max-width: 260px; }
+    .footer-col h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 13px; color: var(--gray); margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: var(--black); }
+    .footer-bottom { border-top: 1px solid var(--light); padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--gray); letter-spacing: 1px; }
+
+    /* ===== CART SIDEBAR ===== */
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 200; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .overlay.open { opacity: 1; pointer-events: all; }
+    .cart-sidebar { position: fixed; top: 0; right: -460px; width: 440px; height: 100vh; background: var(--white); z-index: 201; transition: right .35s ease; display: flex; flex-direction: column; box-shadow: -4px 0 40px rgba(0,0,0,.12); }
+    .cart-sidebar.open { right: 0; }
+    .cart-head { display: flex; justify-content: space-between; align-items: center; padding: 26px 28px 20px; border-bottom: 1px solid var(--light); }
+    .cart-head h2 { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; }
+    .close-btn { background: none; border: none; font-size: 20px; color: var(--gray); }
+    .close-btn:hover { color: var(--black); }
+    .cart-items { flex: 1; overflow-y: auto; padding: 16px 28px; }
+    .cart-empty { text-align: center; padding: 60px 0; color: var(--gray); font-size: 13px; }
+    .cart-item { display: grid; grid-template-columns: 68px 1fr auto; gap: 14px; align-items: start; padding: 16px 0; border-bottom: 1px solid var(--light); }
+    .ci-img { width: 68px; height: 68px; background: #e8e5e0; display: flex; align-items: center; justify-content: center; font-size: 28px; overflow: hidden; }
+    .ci-img img { width: 100%; height: 100%; object-fit: cover; }
+    .ci-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .ci-sub { font-size: 11px; color: var(--gray); margin-bottom: 10px; }
+    .ci-qty { display: flex; align-items: center; gap: 10px; }
+    .ci-qty button { background: none; border: 1px solid var(--light); width: 26px; height: 26px; font-size: 14px; line-height: 1; transition: border-color .2s; }
+    .ci-qty button:hover { border-color: var(--black); }
+    .ci-qty span { font-size: 13px; font-weight: 600; min-width: 20px; text-align: center; }
+    .ci-price { font-size: 14px; font-weight: 700; white-space: nowrap; }
+    .ci-remove { background: none; border: none; color: var(--gray); font-size: 11px; letter-spacing: 1px; margin-top: 8px; display: block; text-align: left; }
+    .ci-remove:hover { color: var(--danger); }
+    .cart-foot { padding: 20px 28px 32px; border-top: 1px solid var(--light); }
+    .cart-subtotal { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray); margin-bottom: 8px; letter-spacing: 1px; }
+    .cart-total { display: flex; justify-content: space-between; margin-bottom: 20px; }
+    .cart-total span:first-child { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+    .cart-total span:last-child { font-size: 20px; font-weight: 700; }
+    .btn-checkout { width: 100%; background: var(--black); color: var(--white); border: none; padding: 18px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; transition: background .2s, color .2s; }
+    .btn-checkout:hover { background: var(--accent); color: var(--black); }
+
+    /* ===== ADMIN PANEL ===== */
+    .admin-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 300; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .admin-overlay.open { opacity: 1; pointer-events: all; }
+    .admin-panel { position: fixed; inset: 0; z-index: 301; background: #111; color: #eee; transform: translateY(100%); transition: transform .4s ease; display: flex; flex-direction: column; }
+    .admin-panel.open { transform: translateY(0); }
+    .admin-nav { display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 60px; background: #0a0a0a; border-bottom: 1px solid #222; flex-shrink: 0; }
+    .admin-nav h1 { font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); }
+    .admin-nav-links { display: flex; gap: 4px; }
+    .admin-tab { background: none; border: none; color: #666; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; transition: all .2s; border-radius: 4px; }
+    .admin-tab:hover { color: #eee; background: #1a1a1a; }
+    .admin-tab.active { color: var(--accent); background: #1a1a1a; }
+    .admin-close { background: none; border: 1px solid #333; color: #666; padding: 6px 14px; font-size: 11px; letter-spacing: 1px; border-radius: 4px; transition: all .2s; }
+    .admin-close:hover { color: #eee; border-color: #555; }
+    .admin-body { flex: 1; overflow-y: auto; padding: 32px; }
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+
+    /* Dashboard */
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 32px; }
+    .stat-card { background: #1a1a1a; border: 1px solid #252525; padding: 24px; border-radius: 8px; }
+    .stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 10px; }
+    .stat-value { font-size: 30px; font-weight: 700; color: var(--accent); }
+    .stat-sub { font-size: 11px; color: #444; margin-top: 6px; }
+    .recent-orders h3 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 16px; }
+    .orders-table { width: 100%; border-collapse: collapse; }
+    .orders-table th, .orders-table td { text-align: left; padding: 12px 16px; border-bottom: 1px solid #1d1d1d; font-size: 13px; }
+    .orders-table th { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #444; }
+    .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10px; letter-spacing: 1px; }
+    .status-paid { background: #1a3a2a; color: var(--success); }
+    .status-pending { background: #3a2a10; color: var(--accent); }
+    .status-shipped { background: #1a2a3a; color: #5aabff; }
+
+    /* Products Admin */
+    .admin-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .admin-toolbar h2 { font-size: 18px; font-weight: 600; }
+    .btn-add-product { background: var(--accent); color: var(--black); border: none; padding: 10px 20px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; }
+    .btn-add-product:hover { opacity: .85; }
+    .admin-products-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(230px,1fr)); gap: 16px; }
+    .admin-product-card { background: #1a1a1a; border: 1px solid #252525; border-radius: 8px; overflow: hidden; }
+    .apc-img { height: 130px; background: #222; display: flex; align-items: center; justify-content: center; font-size: 50px; overflow: hidden; }
+    .apc-img img { width: 100%; height: 100%; object-fit: cover; }
+    .apc-info { padding: 14px; }
+    .apc-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .apc-meta { font-size: 11px; color: #555; margin-bottom: 10px; }
+    .apc-price { font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 12px; }
+    .apc-actions { display: flex; gap: 8px; }
+    .btn-edit { flex: 1; background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; font-size: 10px; letter-spacing: 1px; border-radius: 4px; }
+    .btn-edit:hover { color: #eee; background: #2a2a2a; }
+    .btn-del { background: #2a1515; border: 1px solid #3a2020; color: #c0392b; padding: 8px 12px; font-size: 10px; border-radius: 4px; }
+    .btn-del:hover { background: #3a1a1a; }
+
+    /* Modal */
+    .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 400; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-bg.open { display: flex; }
+    .modal { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; width: 520px; max-width: 100%; max-height: 90vh; overflow-y: auto; padding: 32px; }
+    .modal h3 { font-size: 16px; font-weight: 600; margin-bottom: 24px; color: #eee; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 8px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: #111; border: 1px solid #2a2a2a; color: #eee; padding: 10px 14px; font-size: 13px; border-radius: 4px; font-family: var(--font); transition: border-color .2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+    .form-group select option { background: #1a1a1a; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .modal-actions { display: flex; gap: 12px; margin-top: 24px; }
+    .btn-save { flex: 1; background: var(--accent); color: var(--black); border: none; padding: 12px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; }
+    .btn-save:hover { opacity: .85; }
+    .btn-cancel-modal { flex: 1; background: #252525; border: 1px solid #333; color: #aaa; padding: 12px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; }
+    .btn-cancel-modal:hover { color: #eee; }
+
+    /* Settings */
+    .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 800px; }
+    .settings-card { background: #1a1a1a; border: 1px solid #252525; border-radius: 8px; padding: 28px; }
+    .settings-card h3 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 20px; }
+    .btn-save-settings { background: var(--accent); color: var(--black); border: none; padding: 10px 22px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; margin-top: 14px; }
+    .btn-save-settings:hover { opacity: .85; }
+
+    /* Toast */
+    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--black); color: var(--white); padding: 13px 28px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; z-index: 999; transition: transform .3s ease; white-space: nowrap; pointer-events: none; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-img-wrap { height: 320px; }
+      .hero-text { padding: 56px 28px; }
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .product-grid, .section-header, .filter-bar { padding-left: 24px; padding-right: 24px; }
+      .banner { grid-template-columns: 1fr; margin: 0 24px 60px; }
+      .banner-img { height: 200px; }
+      footer { grid-template-columns: 1fr 1fr; padding: 36px 24px 28px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding: 18px 24px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .admin-body { padding: 20px; }
+      .settings-grid { grid-template-columns: 1fr; }
+      .cart-sidebar { width: 100vw; right: -100vw; }
+      .filter-result { margin-left: 0; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>New Arrivals</span><span>—</span>
+    <span>Shipping Worldwide</span><span>—</span>
+    <span>Industrial Minimalism</span><span>—</span>
+    <span>Curated Objects</span><span>—</span>
+    <span>Free Shipping Over $500</span><span>—</span>
+    <span>New Arrivals</span><span>—</span>
+    <span>Shipping Worldwide</span><span>—</span>
+    <span>Industrial Minimalism</span><span>—</span>
+    <span>Curated Objects</span><span>—</span>
+    <span>Free Shipping Over $500</span><span>—</span>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="nav-logo">Defining Space</div>
+  <div class="nav-links">
+    <a href="#">Collection</a>
+    <a href="#">Seating</a>
+    <a href="#">Lighting</a>
+    <a href="#">Objects</a>
+    <a href="#">About</a>
+  </div>
+  <div class="nav-actions">
+    <button onclick="openAdmin()">⚙ Admin</button>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-tag">New Collection 2025</p>
+    <h1 class="hero-title">Defining<br>Space.</h1>
+    <p class="hero-sub">Industrial aesthetics for modern living. Each piece is crafted with intention — where function meets minimal beauty.</p>
+    <button class="hero-cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+      Shop Collection →
+    </button>
+  </div>
+  <div class="hero-img-wrap">
+    <!-- 換成您的 Hero 照片路徑 -->
+    <!-- <img src="photos/hero.jpg" alt="Hero"/> -->
+    <div class="hero-img-placeholder">🪑</div>
+  </div>
+</section>
+
+<!-- ===== SHOP ===== -->
+<div id="shop">
+  <div class="section-header">
+    <div>
+      <p class="section-sub">Our Selection</p>
+      <h2 class="section-title">Shop Collection</h2>
+    </div>
+    <button class="view-all" onclick="resetFilter()">View All →</button>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input"
+        placeholder="搜尋商品名稱..." oninput="filterProducts()"/>
+      <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    </div>
+    <div class="filter-tags" id="filterTags">
+      <button class="tag active" onclick="setFilter('all',this)">All</button>
+      <button class="tag" onclick="setFilter('Seating',this)">Seating</button>
+      <button class="tag" onclick="setFilter('Lighting',this)">Lighting</button>
+      <button class="tag" onclick="setFilter('Surface',this)">Surface</button>
+      <button class="tag" onclick="setFilter('Objects',this)">Objects</button>
+    </div>
+    <div class="sort-wrap">
+      <select id="sortSelect" onchange="filterProducts()">
+        <option value="default">排序：預設</option>
+        <option value="price-asc">價格：低 → 高</option>
+        <option value="price-desc">價格：高 → 低</option>
+        <option value="name-asc">名稱：A → Z</option>
+      </select>
+    </div>
+    <div class="filter-result" id="filterResult">共 0 件商品</div>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="product-grid" id="productGrid"></div>
+</div>
+
+<!-- ===== BANNER ===== -->
+<div class="banner">
+  <div class="banner-text">
+    <h2>Industrial Aesthetics for Modern Living.</h2>
+    <p>Curated objects crafted with intention. Where raw materials meet refined minimalism — built to last, designed to inspire.</p>
+    <button class="btn-white">Explore All Objects</button>
+  </div>
+  <div class="banner-img">
+    <!-- <img src="photos/banner.jpg" alt="Banner"/> -->
+    🏭
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-brand">
+    <h3>Defining Space</h3>
+    <p>Industrial minimalism for the modern home. Shipping worldwide. Each object curated with care.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Shop</h4>
+    <a href="#">Seating</a>
+    <a href="#">Lighting</a>
+    <a href="#">Surfaces</a>
+    <a href="#">Objects</a>
+  </div>
+  <div class="footer-col">
+    <h4>Info</h4>
+    <a href="#">Shipping</a>
+    <a href="#">Returns</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-col">
+    <h4>Follow</h4>
+    <a href="#">Instagram</a>
+    <a href="#">Newsletter</a>
+    <a href="#">Pinterest</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 Defining Space. All rights reserved.</span>
+  <span>Industrial Minimalism — Curated Objects</span>
+</div>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head">
+    <h2>Your Cart</h2>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">$0</span>
+    </div>
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">$0</span>
+    </div>
+    <button class="btn-checkout" onclick="checkout()">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div class="admin-overlay" id="adminOverlay" onclick="closeAdmin()"></div>
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-nav">
+    <h1>⚙ Admin Panel</h1>
+    <div class="admin-nav-links">
+      <button class="admin-tab active" onclick="switchTab('dashboard',this)">Dashboard</button>
+      <button class="admin-tab" onclick="switchTab('products',this)">Products</button>
+      <button class="admin-tab" onclick="switchTab('orders',this)">Orders</button>
+      <button class="admin-tab" onclick="switchTab('settings',this)">Settings</button>
+    </div>
+    <button class="admin-close" onclick="closeAdmin()">Close ✕</button>
+  </div>
+  <div class="admin-body">
+
+    <!-- Dashboard -->
+    <div class="admin-section active" id="sec-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Revenue</div>
+          <div class="stat-value" id="statRevenue">$0</div>
+          <div class="stat-sub">Catalogue value</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Products</div>
+          <div class="stat-value" id="statProducts">0</div>
+          <div class="stat-sub">In catalogue</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Orders</div>
+          <div class="stat-value">12</div>
+          <div class="stat-sub">This month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Cart Items</div>
+          <div class="stat-value" id="statCart">0</div>
+          <div class="stat-sub">Current session</div>
+        </div>
+      </div>
+      <div class="recent-orders">
+        <h3>Recent Orders</h3>
+        <table class="orders-table">
+          <thead><tr><th>Order ID</th><th>Customer</th><th>Item</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>#00124</td><td>Chen Wei</td><td>Lounge Chair 01</td><td>$1,250</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+            <tr><td>#00123</td><td>Sara Kim</td><td>Concrete Lamp</td><td>$320</td><td><span class="status-badge status-shipped">Shipped</span></td></tr>
+            <tr><td>#00122</td><td>Marco R.</td><td>Modular Table</td><td>$950</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+            <tr><td>#00121</td><td>Lisa T.</td><td>Office Armchair</td><td>$650</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="admin-section" id="sec-products">
+      <div class="admin-toolbar">
+        <h2>Products Management</h2>
+        <button class="btn-add-product" onclick="openModal()">+ Add Product</button>
+      </div>
+      <div class="admin-products-grid" id="adminProductGrid"></div>
+    </div>
+
+    <!-- Orders -->
+    <div class="admin-section" id="sec-orders">
+      <h2 style="margin-bottom:24px;font-size:18px">Order Management</h2>
+      <table class="orders-table" style="background:#1a1a1a;border-radius:8px;overflow:hidden">
+        <thead style="background:#111"><tr><th>Order ID</th><th>Customer</th><th>Item</th><th>Qty</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>#00124</td><td>Chen Wei</td><td>Lounge Chair 01</td><td>1</td><td>$1,250</td><td>2025-07-01</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+          <tr><td>#00123</td><td>Sara Kim</td><td>Concrete Lamp</td><td>2</td><td>$640</td><td>2025-06-30</td><td><span class="status-badge status-shipped">Shipped</span></td></tr>
+          <tr><td>#00122</td><td>Marco R.</td><td>Modular Table</td><td>1</td><td>$950</td><td>2025-06-29</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+          <tr><td>#00121</td><td>Lisa T.</td><td>Office Armchair</td><td>1</td><td>$650</td><td>2025-06-28</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+          <tr><td>#00120</td><td>Tom H.</td><td>Ceramic Vase III</td><td>3</td><td>$360</td><td>2025-06-27</td><td><span class="status-badge status-shipped">Shipped</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Settings -->
+    <div class="admin-section" id="sec-settings">
+      <h2 style="margin-bottom:24px;font-size:18px">Site Settings</h2>
+      <div class="settings-grid">
+        <div class="settings-card">
+          <h3>Store Info</h3>
+          <div class="form-group"><label>Store Name</label><input type="text" value="Defining Space"/></div>
+          <div class="form-group"><label>Tagline</label><input type="text" value="Industrial Minimalism"/></div>
+          <div class="form-group"><label>Contact Email</label><input type="email" value="hello@definingspace.com"/></div>
+          <button class="btn-save-settings" onclick="showToast('Settings saved ✓')">Save Changes</button>
+        </div>
+        <div class="settings-card">
+          <h3>Shipping</h3>
+          <div class="form-group"><label>Free Shipping Threshold</label><input type="text" value="$500"/></div>
+          <div class="form-group"><label>Default Currency</label>
+            <select><option>USD ($)</option><option>EUR (€)</option><option>TWD (NT$)</option></select>
+          </div>
+          <div class="form-group"><label>Worldwide Shipping</label>
+            <select><option>Enabled</option><option>Disabled</option></select>
+          </div>
+          <button class="btn-save-settings" onclick="showToast('Shipping saved ✓')">Save Changes</button>
+        </div>
+        <div class="settings-card">
+          <h3>Marquee Text</h3>
+          <div class="form-group"><label>Announcement</label>
+            <textarea rows="3" style="resize:vertical">New Arrivals — Shipping Worldwide — Industrial Minimalism — Curated Objects</textarea>
+          </div>
+          <button class="btn-save-settings" onclick="showToast('Marquee updated ✓')">Update</button>
+        </div>
+        <div class="settings-card">
+          <h3>Admin Access</h3>
+          <div class="form-group"><label>Admin Password</label><input type="password" value="admin123"/></div>
+          <div class="form-group"><label>Session Timeout (min)</label><input type="number" value="30"/></div>
+          <button class="btn-save-settings" onclick="showToast('Access settings saved ✓')">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRODUCT MODAL ===== -->
+<div class="modal-bg" id="productModal">
+  <div class="modal">
+    <h3 id="modalTitle">Add New Product</h3>
+    <div class="form-row">
+      <div class="form-group"><label>Product Name *</label><input type="text" id="pName" placeholder="e.g. Lounge Chair"/></div>
+      <div class="form-group"><label>Emoji (備用圖示)</label><input type="text" id="pEmoji" placeholder="🪑"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Category</label>
+        <select id="pCat">
+          <option>Seating / Plywood</option>
+          <option>Seating / Leather</option>
+          <option>Seating / Wood</option>
+          <option>Lighting / Cast</option>
+          <option>Surface / Steel</option>
+          <option>Objects / Clay</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Badge</label>
+        <select id="pBadge">
+          <option value="">None</option>
+          <option value="new">New</option>
+          <option value="sale">Sale</option>
+          <option value="pre">Pre-Order</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Price ($) *</label><input type="number" id="pPrice" placeholder="1250"/></div>
+      <div class="form-group"><label>Sale Price ($)</label><input type="number" id="pSalePrice" placeholder="Optional"/></div>
+    </div>
+    <div class="form-group">
+      <label>照片路徑（每行一張，最多 5 張）</label>
+      <textarea id="pImages" rows="5" placeholder="photos/chair-a.jpg&#10;photos/chair-b.jpg&#10;photos/chair-c.jpg" style="resize:vertical"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-save" onclick="saveProduct()">Save Product</button>
+      <button class="btn-cancel-modal" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+//  DATA
+// ============================================================
+let products = [
+  { id:1, name:'Lounge Chair 01',  cat:'Seating / Plywood',  price:1250, salePrice:null, badge:'new',  emoji:'🪑', images:[] },
+  { id:2, name:'Concrete Lamp',    cat:'Lighting / Cast',    price:320,  salePrice:null, badge:'',     emoji:'💡', images:[] },
+  { id:3, name:'Side Chair H',     cat:'Seating / Wood',     price:580,  salePrice:null, badge:'pre',  emoji:'🪑', images:[] },
+  { id:4, name:'Modular Table',    cat:'Surface / Steel',    price:950,  salePrice:null, badge:'',     emoji:'🪵', images:[] },
+  { id:5, name:'Ceramic Vase III', cat:'Objects / Clay',     price:120,  salePrice:null, badge:'',     emoji:'🏺', images:[] },
+  { id:6, name:'Office Armchair',  cat:'Seating / Leather',  price:800,  salePrice:650,  badge:'sale', emoji:'🪑', images:[] },
+];
+
+let cart         = [];
+let slideIndex   = {};
+let editingId    = null;
+let currentFilter= 'all';
+let currentSearch= '';
+
+// ============================================================
+//  RENDER HELPERS
+// ============================================================
+function buildProductHTML(p, highlighted) {
+  const hasImages = p.images && p.images.length > 0;
+  const multiImg  = hasImages && p.images.length > 1;
+
+  const imgHTML = hasImages
+    ? `<div class="product-img-wrap" id="wrap-${p.id}">
+         ${p.images.map((src,i)=>`
+           <img src="${src}" class="slide-img ${i===0?'active':''}"
+             alt="${p.name}" onerror="this.style.display='none'"/>`).join('')}
+         ${multiImg ? `
+           <button class="slide-btn prev" onclick="changeSlide(${p.id},-1)">&#8592;</button>
+           <button class="slide-btn next" onclick="changeSlide(${p.id}, 1)">&#8594;</button>
+           <div class="slide-dots">
+             ${p.images.map((_,i)=>`
+               <button class="dot ${i===0?'active':''}"
+                 onclick="goSlide(${p.id},${i})"></button>`).join('')}
+           </div>` : ''}
+       </div>`
+    : `<div class="product-img-placeholder">${p.emoji}</div>`;
+
+  const hl = (t) => {
+    if (!highlighted || !currentSearch) return t;
+    const re = new RegExp(`(${currentSearch.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+    return t.replace(re, '<mark style="background:var(--accent);color:var(--black);border-radius:2px;padding:0 2px">$1</mark>');
+  };
+
+  return `
+    <div class="product-card">
+      ${p.badge?`<span class="product-badge badge-${p.badge}">
+        ${p.badge==='new'?'New':p.badge==='sale'?'Sale':'Pre-Order'}</span>`:''}
+      ${imgHTML}
+      <div class="product-info">
+        <p class="product-cat">${hl(p.cat)}</p>
+        <h3 class="product-name">${hl(p.name)}</h3>
+        <div class="product-price">
+          <span class="price-current">$${(p.salePrice||p.price).toLocaleString()}</span>
+          ${p.salePrice?`<span class="price-old">$${p.price.toLocaleString()}</span>`:''}
+        </div>
+        <div class="product-actions">
+          <button class="btn-add" onclick="addToCart(${p.id})">Add to Cart</button>
+          <button class="btn-wish" id="wish-${p.id}" onclick="toggleWish(${p.id},this)">♡</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ============================================================
+//  RENDER ALL PRODUCTS (initial + after admin changes)
+// ============================================================
+function renderProducts() {
+  products.forEach(p => { if(!slideIndex[p.id]) slideIndex[p.id]=0; });
+  filterProducts();
+}
+
+// ============================================================
+//  FILTER / SEARCH / SORT
+// ============================================================
+function setFilter(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.tag').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  filterProducts();
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value='';
+  currentSearch='';
+  document.getElementById('searchClear').style.display='none';
+  filterProducts();
+}
+
+function resetFilter() {
+  clearSearch();
+  currentFilter='all';
+  document.querySelectorAll('.tag').forEach((t,i)=>{
+    t.classList.toggle('active', i===0);
+  });
+  document.getElementById('sortSelect').value='default';
+  filterProducts();
+}
+
+function filterProducts() {
+  const searchVal = document.getElementById('searchInput').value.trim().toLowerCase();
+  const sortVal   = document.getElementById('sortSelect').value;
+  currentSearch   = searchVal;
+
+  document.getElementById('searchClear').style.display = searchVal ? 'block' : 'none';
+
+  let result = products.filter(p => {
+    const matchCat    = currentFilter==='all' || p.cat.includes(currentFilter);
+    const matchSearch = !searchVal ||
+      p.name.toLowerCase().includes(searchVal) ||
+      p.cat.toLowerCase().includes(searchVal);
+    return matchCat && matchSearch;
+  });
+
+  const ep = p => p.salePrice || p.price;
+  if(sortVal==='price-asc')  result.sort((a,b)=>ep(a)-ep(b));
+  if(sortVal==='price-desc') result.sort((a,b)=>ep(b)-ep(a));
+  if(sortVal==='name-asc')   result.sort((a,b)=>a.name.localeCompare(b.name));
+
+  const grid = document.getElementById('productGrid');
+  if(result.length===0){
+    grid.innerHTML=`
+      <div class="no-result">
+        <span>🔍</span>
+        <p>找不到符合「<strong>${currentSearch||currentFilter}</strong>」的商品</p>
+        <button class="btn-clear-filter" onclick="resetFilter()">清除所有篩選</button>
+      </div>`;
+  } else {
+    grid.innerHTML = result.map(p=>buildProductHTML(p, true)).join('');
+    result.forEach(p=>{ if(!slideIndex[p.id]) slideIndex[p.id]=0; });
+  }
+
+  document.getElementById('filterResult').textContent=`共 ${result.length} 件商品`;
+  updateStats();
+}
+
+// ============================================================
+//  SLIDESHOW
+// ============================================================
+function changeSlide(pid, dir) {
+  const p = products.find(x=>x.id===pid);
+  if(!p||!p.images||!p.images.length) return;
+  slideIndex[pid] = (slideIndex[pid]+dir+p.images.length) % p.images.length;
+  updateSlideUI(pid);
+}
+function goSlide(pid, idx) {
+  slideIndex[pid]=idx;
+  updateSlideUI(pid);
+}
+function updateSlideUI(pid) {
+  const wrap = document.getElementById(`wrap-${pid}`);
+  if(!wrap) return;
+  wrap.querySelectorAll('.slide-img').forEach((img,i)=>img.classList.toggle('active',i===slideIndex[pid]));
+  wrap.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===slideIndex[pid]));
+}
+
+// ============================================================
+//  WISHLIST
+// ============================================================
+const wishlist = new Set();
+function toggleWish(id, btn) {
+  if(wishlist.has(id)){ wishlist.delete(id); btn.textContent='♡'; btn.classList.remove('wished'); }
+  else { wishlist.add(id); btn.textContent='♥'; btn.classList.add('wished'); showToast('Added to wishlist ♥'); }
+}
+
+// ============================================================
+//  CART
+// ============================================================
+function addToCart(id) {
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  const ex = cart.find(x=>x.id===id);
+  if(ex){ ex.qty++; } else { cart.push({...p, qty:1}); }
+  updateCartUI();
+  openCart();
+  showToast(`${p.name} added to cart ✓`);
+}
+function removeFromCart(id) {
+  cart = cart.filter(x=>x.id!==id);
+  updateCartUI();
+}
+function changeQty(id, delta) {
+  const item = cart.find(x=>x.id===id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty<=0) removeFromCart(id);
+  else updateCartUI();
+}
+function updateCartUI() {
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  const total = cart.reduce((s,i)=>s+(i.salePrice||i.price)*i.qty,0);
+  document.getElementById('cartCount').textContent=count;
+  document.getElementById('cartSubtotal').textContent=`$${total.toLocaleString()}`;
+  document.getElementById('cartTotal').textContent=`$${total.toLocaleString()}`;
+
+  const c = document.getElementById('cartItems');
+  if(cart.length===0){
+    c.innerHTML='<div class="cart-empty">Your cart is empty.</div>';
+  } else {
+    c.innerHTML = cart.map(item=>{
+      const thumb = item.images&&item.images[0]
+        ? `<img src="${item.images[0]}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover"/>`
+        : item.emoji;
+      return `
+        <div class="cart-item">
+          <div class="ci-img">${thumb}</div>
+          <div>
+            <div class="ci-name">${item.name}</div>
+            <div class="ci-sub">${item.cat}</div>
+            <div class="ci-qty">
+              <button onclick="changeQty(${item.id},-1)">−</button>
+              <span>${item.qty}</span>
+              <button onclick="changeQty(${item.id}, 1)">+</button>
+            </div>
+            <button class="ci-remove" onclick="removeFromCart(${item.id})">Remove</button>
+          </div>
+          <div class="ci-price">$${((item.salePrice||item.price)*item.qty).toLocaleString()}</div>
+        </div>`;
+    }).join('');
+  }
+  updateStats();
+}
+function checkout() {
+  if(cart.length===0){ showToast('購物車是空的！'); return; }
+  showToast('Order placed! Thank you 🎉');
+  cart=[];
+  updateCartUI();
+  closeCart();
+}
+function openCart()  { document.getElementById('cartSidebar').classList.add('open'); document.getElementById('overlay').classList.add('open'); }
+function closeCart() { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
+
+// ============================================================
+//  ADMIN
+// ============================================================
+function openAdmin() {
+  document.getElementById('adminPanel').classList.add('open');
+  document.getElementById('adminOverlay').classList.add('open');
+  renderAdminProducts(); updateStats();
+}
+function closeAdmin() {
+  document.getElementById('adminPanel').classList.remove('open');
+  document.getElementById('adminOverlay').classList.remove('open');
+}
+function switchTab(name, btn) {
+  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sec-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='products') renderAdminProducts();
+}
+function updateStats() {
+  const rev = products.reduce((s,p)=>s+(p.salePrice||p.price),0);
+  document.getElementById('statRevenue').textContent=`$${rev.toLocaleString()}`;
+  document.getElementById('statProducts').textContent=products.length;
+  document.getElementById('statCart').textContent=cart.reduce((s,i)=>s+i.qty,0);
+}
+function renderAdminProducts() {
+  document.getElementById('adminProductGrid').innerHTML = products.map(p=>{
+    const thumb = p.images&&p.images[0]
+      ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.outerHTML='${p.emoji}'">`
+      : p.emoji;
+    return `
+      <div class="admin-product-card">
+        <div class="apc-img">${thumb}</div>
+        <div class="apc-info">
+          <div class="apc-name">${p.name}</div>
+          <div class="apc-meta">${p.cat} · ${p.badge||'No badge'} · ${p.images?p.images.length:0} photos</div>
+          <div class="apc-price">$${(p.salePrice||p.price).toLocaleString()}
+            ${p.salePrice?`<span style="color:#555;font-size:12px;text-decoration:line-through;margin-left:6px">$${p.price.toLocaleString()}</span>`:''}
+          </div>
+          <div class="apc-actions">
+            <button class="btn-edit" onclick="editProduct(${p.id})">✏ Edit</button>
+            <button class="btn-del"  onclick="deleteProduct(${p.id})">🗑</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ============================================================
+//  MODAL
+// ============================================================
+function openModal(id=null) {
+  editingId=id;
+  const m=document.getElementById('productModal');
+  if(id){
+    const p=products.find(x=>x.id===id);
+    document.getElementById('modalTitle').textContent='Edit Product';
+    document.getElementById('pName').value=p.name;
+    document.getElementById('pEmoji').value=p.emoji;
+    document.getElementById('pCat').value=p.cat;
+    document.getElementById('pBadge').value=p.badge;
+    document.getElementById('pPrice').value=p.price;
+    document.getElementById('pSalePrice').value=p.salePrice||'';
+    document.getElementById('pImages').value=(p.images||[]).join('\n');
+  } else {
+    document.getElementById('modalTitle').textContent='Add New Product';
+    ['pName','pEmoji','pPrice','pSalePrice','pImages'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('pCat').value='Seating / Plywood';
+    document.getElementById('pBadge').value='';
+  }
+  m.classList.add('open');
 }
 function closeModal() { document.getElementById('productModal').classList.remove('open'); }
-
-function previewImages() {
-  const lines = document.getElementById('pImages').value.trim().split('\n').map(s=>s.trim()).filter(Boolean);
-  document.getElementById('imgPreviewWrap').innerHTML = lines.map(src =>
-    `<img src="${src}" class="img-preview" onerror="this.style.opacity='.3'" title="${src}"/>`
-  ).join('');
-}
-
 function saveProduct() {
   const name  = document.getElementById('pName').value.trim();
   const price = parseFloat(document.getElementById('pPrice').value);
-  if (!name||!price) { showToast('請填寫商品名稱與售價'); return; }
-
+  if(!name||!price){ showToast('請填寫商品名稱與價格'); return; }
   const imagesRaw = document.getElementById('pImages').value.trim();
-  const images    = imagesRaw ? imagesRaw.split('\n').map(s=>s.trim()).filter(Boolean) : [];
-
-  const newProduct = {
-    id:        editingId || Date.now(),
+  const images = imagesRaw ? imagesRaw.split('\n').map(s=>s.trim()).filter(Boolean) : [];
+  const np = {
+    id:        editingId||Date.now(),
     name,
     emoji:     document.getElementById('pEmoji').value||'📦',
     cat:       document.getElementById('pCat').value,
@@ -27,51 +938,1487 @@ function saveProduct() {
     salePrice: parseFloat(document.getElementById('pSalePrice').value)||null,
     images,
   };
-
-  if (editingId) { products = products.map(p => p.id===editingId ? newProduct : p); showToast('商品已更新 ✓'); }
-  else           { products.push(newProduct); showToast('商品已新增 ✓'); }
-
+  if(editingId){ products=products.map(p=>p.id===editingId?np:p); showToast('商品已更新 ✓'); }
+  else          { products.push(np); showToast('商品已新增 ✓'); }
   closeModal();
   renderProducts();
   renderAdminProducts();
 }
-
+function editProduct(id)   { openModal(id); }
 function deleteProduct(id) {
-  if (!confirm('確定要刪除這個商品嗎？')) return;
-  products = products.filter(p => p.id!==id);
-  renderProducts();
-  renderAdminProducts();
+  if(!confirm('確定要刪除這個商品嗎？')) return;
+  products=products.filter(p=>p.id!==id);
+  renderProducts(); renderAdminProducts();
   showToast('商品已刪除');
 }
 
-/* ============================================================
-   MARQUEE UPDATE
-   ============================================================ */
-function updateMarquee() {
-  const txt = document.getElementById('marqueeText').value.trim();
-  const items = txt.split('—').map(s=>s.trim()).filter(Boolean);
-  const track = document.querySelector('.marquee-track');
-  track.innerHTML = [...items, ...items, ...items].map(s => `<span>${s}</span><span>—</span>`).join('');
-  showToast('跑馬燈已更新 ✓');
-}
-
-/* ============================================================
-   TOAST
-   ============================================================ */
+// ============================================================
+//  TOAST
+// ============================================================
 let toastTimer;
 function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2800);
 }
 
-/* ============================================================
-   INIT
-   ============================================================ */
+// ============================================================
+//  INIT
+// ============================================================
 renderProducts();
 updateCartUI();
 </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Defining Space — Industrial Minimalism</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:   #0a0a0a;
+      --white:   #f5f5f0;
+      --gray:    #888;
+      --light:   #e8e8e4;
+      --accent:  #c8a96e;
+      --danger:  #c0392b;
+      --success: #27ae60;
+      --font:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    body { font-family: var(--font); background: var(--white); color: var(--black); }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: var(--font); }
+    img { max-width: 100%; display: block; }
+
+    /* ===== MARQUEE ===== */
+    .marquee-wrap { background: var(--black); color: var(--white); padding: 10px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-track { display: inline-block; animation: marquee 22s linear infinite; }
+    .marquee-track span { margin: 0 32px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 48px; border-bottom: 1px solid var(--light);
+      position: sticky; top: 0; background: var(--white); z-index: 100;
+    }
+    .nav-logo { font-size: 18px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); transition: color .2s; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-actions { display: flex; gap: 20px; align-items: center; }
+    .nav-actions button { background: none; border: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); transition: color .2s; }
+    .nav-actions button:hover { color: var(--black); }
+    .cart-btn { position: relative; }
+    .cart-count {
+      position: absolute; top: -8px; right: -12px;
+      background: var(--accent); color: var(--black);
+      border-radius: 50%; width: 18px; height: 18px;
+      font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700;
+    }
+
+    /* ===== HERO ===== */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; overflow: hidden; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; }
+    .hero-tag { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; }
+    .hero-title { font-size: clamp(40px,5vw,72px); font-weight: 700; line-height: 1.05; letter-spacing: -1px; margin-bottom: 28px; }
+    .hero-sub { font-size: 15px; color: var(--gray); line-height: 1.8; max-width: 380px; margin-bottom: 40px; }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--black); color: var(--white); border: none;
+      padding: 16px 32px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      width: fit-content; transition: background .2s, color .2s;
+    }
+    .hero-cta:hover { background: var(--accent); color: var(--black); }
+    .hero-img-wrap {
+      position: relative; overflow: hidden; background: #d4cfc8;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-placeholder { font-size: 120px; }
+
+    /* ===== SECTION HEADER ===== */
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; padding: 64px 48px 24px; }
+    .section-title { font-size: clamp(24px,3vw,40px); font-weight: 700; letter-spacing: -.5px; }
+    .section-sub { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+    .view-all {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+      background: none; border: none; border-bottom: 1px solid var(--gray); padding-bottom: 2px; transition: color .2s, border-color .2s;
+    }
+    .view-all:hover { color: var(--black); border-color: var(--black); }
+
+    /* ===== FILTER BAR ===== */
+    .filter-bar {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 16px; padding: 0 48px 32px;
+    }
+    .search-wrap { position: relative; display: flex; align-items: center; flex: 1; min-width: 200px; max-width: 320px; }
+    .search-icon { position: absolute; left: 12px; font-size: 14px; pointer-events: none; }
+    .search-input {
+      width: 100%; padding: 10px 36px 10px 36px;
+      border: 1px solid var(--light); background: var(--white);
+      font-size: 13px; font-family: var(--font); letter-spacing: 1px;
+      outline: none; transition: border-color .2s;
+    }
+    .search-input:focus { border-color: var(--black); }
+    .search-clear { position: absolute; right: 10px; background: none; border: none; color: var(--gray); font-size: 13px; display: none; }
+    .search-clear:hover { color: var(--black); }
+    .filter-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      background: none; border: 1px solid var(--light);
+      padding: 8px 18px; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gray); transition: all .2s;
+    }
+    .tag:hover { border-color: var(--black); color: var(--black); }
+    .tag.active { background: var(--black); color: var(--white); border-color: var(--black); }
+    .sort-wrap select {
+      padding: 9px 16px; border: 1px solid var(--light);
+      background: var(--white); font-size: 11px; letter-spacing: 1px;
+      font-family: var(--font); color: var(--gray); outline: none; transition: border-color .2s;
+    }
+    .sort-wrap select:focus { border-color: var(--black); }
+    .filter-result { font-size: 11px; letter-spacing: 1px; color: var(--gray); margin-left: auto; }
+
+    /* ===== PRODUCT GRID ===== */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; padding: 0 48px 80px; }
+    .product-card { position: relative; background: var(--white); border: 1px solid var(--light); overflow: hidden; transition: box-shadow .3s; animation: fadeIn .35s ease; }
+    .product-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .product-badge { position: absolute; top: 16px; left: 16px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 10px; font-weight: 700; z-index: 3; }
+    .badge-new { background: var(--black); color: var(--white); }
+    .badge-sale { background: var(--danger); color: var(--white); }
+    .badge-pre { background: var(--accent); color: var(--black); }
+
+    /* 單圖 */
+    .product-img { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 72px; background: #e8e5e0; transition: transform .4s; overflow: hidden; }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .product-card:hover .product-img img,
+    .product-card:hover .product-img { transform: scale(1.04); }
+
+    /* 多圖輪播 */
+    .product-img-wrap { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; background: #e8e5e0; }
+    .slide-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s ease; }
+    .slide-img.active { opacity: 1; }
+    .slide-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.45); color: #fff; border: none;
+      width: 32px; height: 32px; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .2s; z-index: 3; border-radius: 2px;
+    }
+    .product-img-wrap:hover .slide-btn { opacity: 1; }
+    .slide-btn.prev { left: 8px; }
+    .slide-btn.next { right: 8px; }
+    .slide-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.5); cursor: pointer; transition: background .2s; }
+    .dot.active { background: #fff; }
+
+    /* 商品資訊 */
+    .product-info { padding: 20px 20px 24px; }
+    .product-cat { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+    .product-name { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+    .product-price { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .price-current { font-size: 16px; font-weight: 700; }
+    .price-old { font-size: 13px; color: var(--gray); text-decoration: line-through; }
+    .product-actions { display: flex; gap: 8px; }
+    .btn-add { flex: 1; background: var(--black); color: var(--white); border: none; padding: 12px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; transition: background .2s, color .2s; }
+    .btn-add:hover { background: var(--accent); color: var(--black); }
+    .btn-wish { width: 44px; background: none; border: 1px solid var(--light); font-size: 16px; transition: border-color .2s, color .2s; }
+    .btn-wish:hover { border-color: var(--black); color: var(--danger); }
+    .btn-wish.wished { color: var(--danger); border-color: var(--danger); }
+
+    /* 無結果 */
+    .no-result { grid-column: 1 / -1; text-align: center; padding: 80px 0; color: var(--gray); }
+    .no-result .no-result-icon { font-size: 48px; margin-bottom: 16px; }
+    .no-result p { font-size: 13px; margin-bottom: 20px; }
+    .btn-clear-filter { padding: 10px 24px; border: 1px solid var(--black); background: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: all .2s; }
+    .btn-clear-filter:hover { background: var(--black); color: var(--white); }
+
+    /* ===== BANNER ===== */
+    .banner { background: var(--black); color: var(--white); display: grid; grid-template-columns: 1fr 1fr; min-height: 320px; margin: 0 48px 80px; }
+    .banner-text { padding: 64px 56px; display: flex; flex-direction: column; justify-content: center; }
+    .banner-text h2 { font-size: 36px; font-weight: 700; margin-bottom: 16px; line-height: 1.15; }
+    .banner-text p { color: #aaa; font-size: 14px; line-height: 1.8; margin-bottom: 32px; }
+    .btn-white { display: inline-block; background: var(--white); color: var(--black); padding: 14px 28px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; border: none; width: fit-content; transition: background .2s; }
+    .btn-white:hover { background: var(--accent); }
+    .banner-img { background: #222; display: flex; align-items: center; justify-content: center; font-size: 100px; overflow: hidden; }
+    .banner-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ===== FOOTER ===== */
+    footer { border-top: 1px solid var(--light); padding: 48px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+    .footer-brand h3 { font-size: 16px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-brand p { font-size: 13px; color: var(--gray); line-height: 1.8; max-width: 280px; }
+    .footer-col h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 13px; color: var(--gray); margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: var(--black); }
+    .footer-bottom { border-top: 1px solid var(--light); padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--gray); letter-spacing: 1px; }
+
+    /* ===== CART SIDEBAR ===== */
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 200; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .overlay.open { opacity: 1; pointer-events: all; }
+    .cart-sidebar { position: fixed; top: 0; right: -440px; width: 440px; height: 100vh; background: var(--white); z-index: 201; transition: right .35s ease; display: flex; flex-direction: column; box-shadow: -4px 0 40px rgba(0,0,0,.15); }
+    .cart-sidebar.open { right: 0; }
+    .cart-head { display: flex; justify-content: space-between; align-items: center; padding: 28px 28px 20px; border-bottom: 1px solid var(--light); }
+    .cart-head h2 { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
+    .close-btn { background: none; border: none; font-size: 22px; color: var(--gray); }
+    .close-btn:hover { color: var(--black); }
+    .cart-items { flex: 1; overflow-y: auto; padding: 20px 28px; }
+    .cart-empty { text-align: center; padding: 60px 0; color: var(--gray); font-size: 13px; }
+    .cart-item { display: grid; grid-template-columns: 64px 1fr auto; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--light); }
+    .ci-img { width: 64px; height: 64px; background: #e8e5e0; display: flex; align-items: center; justify-content: center; font-size: 30px; overflow: hidden; }
+    .ci-img img { width: 100%; height: 100%; object-fit: cover; }
+    .ci-name { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .ci-sub { font-size: 11px; color: var(--gray); }
+    .ci-qty { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .ci-qty button { background: none; border: 1px solid var(--light); width: 26px; height: 26px; font-size: 14px; transition: border-color .2s; }
+    .ci-qty button:hover { border-color: var(--black); }
+    .ci-qty span { font-size: 13px; font-weight: 600; min-width: 20px; text-align: center; }
+    .ci-price { font-size: 14px; font-weight: 700; }
+    .ci-remove { background: none; border: none; color: var(--gray); font-size: 11px; margin-top: 6px; display: block; letter-spacing: 1px; }
+    .ci-remove:hover { color: var(--danger); }
+    .cart-foot { padding: 20px 28px 32px; border-top: 1px solid var(--light); }
+    .cart-total { display: flex; justify-content: space-between; margin-bottom: 20px; }
+    .cart-total span:first-child { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+    .cart-total span:last-child { font-size: 20px; font-weight: 700; }
+    .btn-checkout { width: 100%; background: var(--black); color: var(--white); border: none; padding: 18px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; transition: background .2s, color .2s; }
+    .btn-checkout:hover { background: var(--accent); color: var(--black); }
+
+    /* ===== ADMIN PANEL ===== */
+    .admin-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 300; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .admin-overlay.open { opacity: 1; pointer-events: all; }
+    .admin-panel { position: fixed; inset: 0; z-index: 301; background: #111; color: #eee; transform: translateY(100%); transition: transform .4s ease; display: flex; flex-direction: column; }
+    .admin-panel.open { transform: translateY(0); }
+    .admin-nav { display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 60px; background: #0a0a0a; border-bottom: 1px solid #222; flex-shrink: 0; }
+    .admin-nav h1 { font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); }
+    .admin-nav-links { display: flex; gap: 4px; }
+    .admin-tab { background: none; border: none; color: #666; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; transition: color .2s; border-radius: 4px; }
+    .admin-tab:hover { color: #eee; background: #1a1a1a; }
+    .admin-tab.active { color: var(--accent); background: #1a1a1a; }
+    .admin-close { background: none; border: 1px solid #333; color: #666; padding: 6px 14px; font-size: 11px; letter-spacing: 1px; border-radius: 4px; transition: all .2s; }
+    .admin-close:hover { color: #eee; border-color: #555; }
+    .admin-body { flex: 1; overflow-y: auto; padding: 32px; }
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+
+    /* Dashboard */
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 32px; }
+    .stat-card { background: #1a1a1a; border: 1px solid #2a2a2a; padding: 24px; border-radius: 8px; }
+    .stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 10px; }
+    .stat-value { font-size: 32px; font-weight: 700; color: var(--accent); }
+    .stat-sub { font-size: 11px; color: #555; margin-top: 6px; }
+    .recent-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 16px; }
+    .orders-table { width: 100%; border-collapse: collapse; }
+    .orders-table th, .orders-table td { text-align: left; padding: 12px 16px; border-bottom: 1px solid #1f1f1f; font-size: 13px; }
+    .orders-table th { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; }
+    .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10px; letter-spacing: 1px; }
+    .status-paid { background: #1a3a2a; color: var(--success); }
+    .status-pending { background: #3a2a10; color: var(--accent); }
+    .status-shipped { background: #1a2a3a; color: #5aabff; }
+
+    /* Admin Products */
+    .admin-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .admin-toolbar h2 { font-size: 18px; font-weight: 600; }
+    .btn-add-product { background: var(--accent); color: var(--black); border: none; padding: 10px 20px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; transition: opacity .2s; }
+    .btn-add-product:hover { opacity: .85; }
+    .admin-products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 16px; }
+    .admin-product-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; overflow: hidden; }
+    .apc-img { height: 140px; background: #222; display: flex; align-items: center; justify-content: center; font-size: 56px; overflow: hidden; }
+    .apc-img img { width: 100%; height: 100%; object-fit: cover; }
+    .apc-info { padding: 16px; }
+    .apc-name { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .apc-meta { font-size: 11px; color: #555; margin-bottom: 12px; }
+    .apc-price { font-size: 16px; font-weight: 700; color: var(--accent); margin-bottom: 14px; }
+    .apc-actions { display: flex; gap: 8px; }
+    .btn-edit { flex: 1; background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; font-size: 10px; letter-spacing: 1px; border-radius: 4px; transition: all .2s; }
+    .btn-edit:hover { background: #2a2a2a; color: #eee; }
+    .btn-del { background: #2a1515; border: 1px solid #3a2020; color: #c0392b; padding: 8px 12px; font-size: 10px; border-radius: 4px; transition: all .2s; }
+    .btn-del:hover { background: #3a1a1a; }
+
+    /* Modal */
+    .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 400; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-bg.open { display: flex; }
+    .modal { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; width: 520px; max-width: 100%; padding: 32px; max-height: 90vh; overflow-y: auto; }
+    .modal h3 { font-size: 16px; font-weight: 600; margin-bottom: 24px; color: #eee; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 8px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: #111; border: 1px solid #2a2a2a; color: #eee; padding: 10px 14px; font-size: 13px; border-radius: 4px; font-family: var(--font); transition: border-color .2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+    .form-group select option { background: #1a1a1a; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .modal-actions { display: flex; gap: 12px; margin-top: 24px; }
+    .btn-save { flex: 1; background: var(--accent); color: var(--black); border: none; padding: 12px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; }
+    .btn-save:hover { opacity: .85; }
+    .btn-cancel-modal { flex: 1; background: #252525; border: 1px solid #333; color: #aaa; padding: 12px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; }
+    .btn-cancel-modal:hover { color: #eee; }
+    .img-preview-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .img-preview { width: 64px; height: 64px; object-fit: cover; border-radius: 4px; border: 1px solid #2a2a2a; }
+
+    /* Settings */
+    .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 780px; }
+    .settings-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 28px; }
+    .settings-card h3 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 20px; }
+    .btn-save-settings { background: var(--accent); color: var(--black); border: none; padding: 10px 24px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; margin-top: 16px; }
+    .btn-save-settings:hover { opacity: .85; }
+
+    /* Toast */
+    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--black); color: var(--white); padding: 14px 28px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; z-index: 999; transition: transform .3s ease; white-space: nowrap; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-img-wrap { height: 300px; }
+      .hero-text { padding: 48px 28px; }
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .filter-bar, .product-grid, .section-header { padding-left: 24px; padding-right: 24px; }
+      .product-grid { padding-bottom: 48px; }
+      .banner { grid-template-columns: 1fr; margin: 0 24px 60px; }
+      .banner-img { height: 200px; }
+      footer { grid-template-columns: 1fr 1fr; padding: 36px 24px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding: 20px 24px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .admin-body { padding: 20px; }
+      .settings-grid { grid-template-columns: 1fr; }
+      .cart-sidebar { width: 100vw; right: -100vw; }
+      .filter-result { margin-left: 0; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>New Arrivals</span><span>—</span>
+    <span>Shipping Worldwide</span><span>—</span>
+    <span>Industrial Minimalism</span><span>—</span>
+    <span>Curated Objects</span><span>—</span>
+    <span>New Arrivals</span><span>—</span>
+    <span>Shipping Worldwide</span><span>—</span>
+    <span>Industrial Minimalism</span><span>—</span>
+    <span>Curated Objects</span><span>—</span>
+    <span>New Arrivals</span><span>—</span>
+    <span>Shipping Worldwide</span><span>—</span>
+    <span>Industrial Minimalism</span><span>—</span>
+    <span>Curated Objects</span><span>—</span>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="nav-logo">Defining Space</div>
+  <div class="nav-links">
+    <a href="#">Collection</a>
+    <a href="#">Seating</a>
+    <a href="#">Lighting</a>
+    <a href="#">Objects</a>
+    <a href="#">About</a>
+  </div>
+  <div class="nav-actions">
+    <button onclick="openAdmin()">⚙ Admin</button>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-tag">New Collection 2025</p>
+    <h1 class="hero-title">Defining<br>Space.</h1>
+    <p class="hero-sub">Industrial aesthetics for modern living. Each piece is crafted with intention — where function meets minimal beauty.</p>
+    <button class="hero-cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+      Shop Collection →
+    </button>
+  </div>
+  <div class="hero-img-wrap">
+    <!-- 換成您的 Hero 照片路徑 -->
+    <!-- <img src="photos/hero.jpg" alt="Hero"/> -->
+    <div class="hero-placeholder">🪑</div>
+  </div>
+</section>
+
+<!-- ===== SHOP SECTION ===== -->
+<div id="shop">
+  <div class="section-header">
+    <div>
+      <p class="section-sub">Our Selection</p>
+      <h2 class="section-title">Shop Collection</h2>
+    </div>
+    <button class="view-all">View All →</button>
+  </div>
+
+  <!-- 搜尋 + 篩選 -->
+  <div class="filter-bar">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input"
+        placeholder="搜尋商品名稱..."
+        oninput="filterProducts()"/>
+      <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    </div>
+    <div class="filter-tags" id="filterTags">
+      <button class="tag active" onclick="setFilter('all',this)">All</button>
+      <button class="tag" onclick="setFilter('Seating',this)">Seating</button>
+      <button class="tag" onclick="setFilter('Lighting',this)">Lighting</button>
+      <button class="tag" onclick="setFilter('Surface',this)">Surface</button>
+      <button class="tag" onclick="setFilter('Objects',this)">Objects</button>
+    </div>
+    <div class="sort-wrap">
+      <select id="sortSelect" onchange="filterProducts()">
+        <option value="default">排序：預設</option>
+        <option value="price-asc">價格：低 → 高</option>
+        <option value="price-desc">價格：高 → 低</option>
+        <option value="name-asc">名稱：A → Z</option>
+      </select>
+    </div>
+    <div class="filter-result" id="filterResult">共 0 件商品</div>
+  </div>
+
+  <div class="product-grid" id="productGrid"></div>
+</div>
+
+<!-- ===== BANNER ===== -->
+<div class="banner">
+  <div class="banner-text">
+    <h2>Industrial Aesthetics for Modern Living.</h2>
+    <p>Curated objects crafted with intention. Where raw materials meet refined minimalism — built to last, designed to inspire.</p>
+    <button class="btn-white">Explore All Objects</button>
+  </div>
+  <div class="banner-img">
+    <!-- <img src="photos/banner.jpg" alt="Banner"/> -->
+    🏭
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-brand">
+    <h3>Defining Space</h3>
+    <p>Industrial minimalism for the modern home. Shipping worldwide. Each object curated with care.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Shop</h4>
+    <a href="#">Seating</a>
+    <a href="#">Lighting</a>
+    <a href="#">Surfaces</a>
+    <a href="#">Objects</a>
+  </div>
+  <div class="footer-col">
+    <h4>Info</h4>
+    <a href="#">Shipping</a>
+    <a href="#">Returns</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-col">
+    <h4>Follow</h4>
+    <a href="#">Instagram</a>
+    <a href="#">Newsletter</a>
+    <a href="#">Pinterest</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 Defining Space. All rights reserved.</span>
+  <span>Industrial Minimalism — Curated Objects</span>
+</div>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head">
+    <h2>Your Cart</h2>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">Your cart is empty.</div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">$0</span>
+    </div>
+    <button class="btn-checkout" onclick="checkout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div class="admin-overlay" id="adminOverlay"></div>
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-nav">
+    <h1>⚙ Admin Panel</h1>
+    <div class="admin-nav-links">
+      <button class="admin-tab active" onclick="switchTab('dashboard',this)">Dashboard</button>
+      <button class="admin-tab" onclick="switchTab('products',this)">Products</button>
+      <button class="admin-tab" onclick="switchTab('orders',this)">Orders</button>
+      <button class="admin-tab" onclick="switchTab('settings',this)">Settings</button>
+    </div>
+    <button class="admin-close" onclick="closeAdmin()">Close ✕</button>
+  </div>
+  <div class="admin-body">
+
+    <!-- Dashboard -->
+    <div class="admin-section active" id="sec-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Products</div>
+          <div class="stat-value" id="statProducts">0</div>
+          <div class="stat-sub">In catalogue</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Catalogue Value</div>
+          <div class="stat-value" id="statRevenue">$0</div>
+          <div class="stat-sub">Sum of prices</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Cart Items</div>
+          <div class="stat-value" id="statCart">0</div>
+          <div class="stat-sub">Current session</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Orders</div>
+          <div class="stat-value">12</div>
+          <div class="stat-sub">This month</div>
+        </div>
+      </div>
+      <p class="recent-title">Recent Orders</p>
+      <table class="orders-table">
+        <thead><tr><th>Order ID</th><th>Customer</th><th>Item</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>#00124</td><td>Chen Wei</td><td>Lounge Chair 01</td><td>$1,250</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+          <tr><td>#00123</td><td>Sara Kim</td><td>Concrete Lamp</td><td>$320</td><td><span class="status-badge status-shipped">Shipped</span></td></tr>
+          <tr><td>#00122</td><td>Marco R.</td><td>Modular Table</td><td>$950</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+          <tr><td>#00121</td><td>Lisa T.</td><td>Office Armchair</td><td>$650</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Products -->
+    <div class="admin-section" id="sec-products">
+      <div class="admin-toolbar">
+        <h2>Products Management</h2>
+        <button class="btn-add-product" onclick="openModal()">+ Add Product</button>
+      </div>
+      <div class="admin-products-grid" id="adminProductGrid"></div>
+    </div>
+
+    <!-- Orders -->
+    <div class="admin-section" id="sec-orders">
+      <h2 style="margin-bottom:24px;font-size:18px">Order Management</h2>
+      <table class="orders-table" style="background:#1a1a1a;border-radius:8px;overflow:hidden">
+        <thead style="background:#111">
+          <tr><th>Order ID</th><th>Customer</th><th>Item</th><th>Qty</th><th>Amount</th><th>Date</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>#00124</td><td>Chen Wei</td><td>Lounge Chair 01</td><td>1</td><td>$1,250</td><td>2025-07-01</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+          <tr><td>#00123</td><td>Sara Kim</td><td>Concrete Lamp</td><td>2</td><td>$640</td><td>2025-06-30</td><td><span class="status-badge status-shipped">Shipped</span></td></tr>
+          <tr><td>#00122</td><td>Marco R.</td><td>Modular Table</td><td>1</td><td>$950</td><td>2025-06-29</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+          <tr><td>#00121</td><td>Lisa T.</td><td>Office Armchair</td><td>1</td><td>$650</td><td>2025-06-28</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+          <tr><td>#00120</td><td>Tom H.</td><td>Ceramic Vase III</td><td>3</td><td>$360</td><td>2025-06-27</td><td><span class="status-badge status-shipped">Shipped</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Settings -->
+    <div class="admin-section" id="sec-settings">
+      <h2 style="margin-bottom:24px;font-size:18px">Site Settings</h2>
+      <div class="settings-grid">
+        <div class="settings-card">
+          <h3>Store Info</h3>
+          <div class="form-group"><label>Store Name</label><input type="text" value="Defining Space"/></div>
+          <div class="form-group"><label>Tagline</label><input type="text" value="Industrial Minimalism"/></div>
+          <div class="form-group"><label>Contact Email</label><input type="email" value="hello@definingspace.com"/></div>
+          <button class="btn-save-settings" onclick="showToast('設定已儲存 ✓')">Save Changes</button>
+        </div>
+        <div class="settings-card">
+          <h3>Shipping</h3>
+          <div class="form-group"><label>Free Shipping Threshold</label><input type="text" value="$500"/></div>
+          <div class="form-group"><label>Default Currency</label>
+            <select><option>USD ($)</option><option>EUR (€)</option><option>TWD (NT$)</option></select>
+          </div>
+          <div class="form-group"><label>Worldwide Shipping</label>
+            <select><option>Enabled</option><option>Disabled</option></select>
+          </div>
+          <button class="btn-save-settings" onclick="showToast('運送設定已儲存 ✓')">Save Changes</button>
+        </div>
+        <div class="settings-card">
+          <h3>Marquee Text</h3>
+          <div class="form-group"><label>Announcement</label>
+            <textarea id="marqueeText" rows="3">New Arrivals — Shipping Worldwide — Industrial Minimalism — Curated Objects</textarea>
+          </div>
+          <button class="btn-save-settings" onclick="updateMarquee()">Update Marquee</button>
+        </div>
+        <div class="settings-card">
+          <h3>Admin Access</h3>
+          <div class="form-group"><label>Admin Password</label><input type="password" value="admin123"/></div>
+          <div class="form-group"><label>Session Timeout (min)</label><input type="number" value="30"/></div>
+          <button class="btn-save-settings" onclick="showToast('存取設定已儲存 ✓')">Save</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== PRODUCT MODAL ===== -->
+<div class="modal-bg" id="productModal">
+  <div class="modal">
+    <h3 id="modalTitle">Add New Product</h3>
+    <div class="form-row">
+      <div class="form-group"><label>商品名稱 *</label><input type="text" id="pName" placeholder="e.g. Lounge Chair"/></div>
+      <div class="form-group"><label>Emoji（備用）</label><input type="text" id="pEmoji" placeholder="🪑" maxlength="4"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>分類 *</label>
+        <select id="pCat">
+          <option>Seating / Plywood</option>
+          <option>Seating / Leather</option>
+          <option>Seating / Wood</option>
+          <option>Lighting / Cast</option>
+          <option>Surface / Steel</option>
+          <option>Objects / Clay</option>
+        </select>
+      </div>
+      <div class="form-group"><label>標籤</label>
+        <select id="pBadge">
+          <option value="">None</option>
+          <option value="new">New</option>
+          <option value="sale">Sale</option>
+          <option value="pre">Pre-Order</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>售價 ($) *</label><input type="number" id="pPrice" placeholder="1250" min="0"/></div>
+      <div class="form-group"><label>特價 ($)（選填）</label><input type="number" id="pSalePrice" placeholder="留空表示無特價" min="0"/></div>
+    </div>
+    <div class="form-group">
+      <label>照片路徑（每行一張，最多 5 張）</label>
+      <textarea id="pImages" rows="4"
+        placeholder="photos/chair01-a.jpg&#10;photos/chair01-b.jpg&#10;photos/chair01-c.jpg"
+        oninput="previewImages()" style="resize:vertical"></textarea>
+      <div class="img-preview-wrap" id="imgPreviewWrap"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-save" onclick="saveProduct()">Save Product</button>
+      <button class="btn-cancel-modal" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+let products = [
+  {
+    id: 1, name: 'Lounge Chair 01', cat: 'Seating / Plywood',
+    price: 1250, salePrice: null, badge: 'new', emoji: '🪑',
+    images: [
+      /* 'photos/chair01-a.jpg', 'photos/chair01-b.jpg' */
+    ]
+  },
+  {
+    id: 2, name: 'Concrete Lamp', cat: 'Lighting / Cast',
+    price: 320, salePrice: null, badge: '', emoji: '💡',
+    images: []
+  },
+  {
+    id: 3, name: 'Side Chair H', cat: 'Seating / Wood',
+    price: 580, salePrice: null, badge: 'pre', emoji: '🪑',
+    images: []
+  },
+  {
+    id: 4, name: 'Modular Table', cat: 'Surface / Steel',
+    price: 950, salePrice: null, badge: '', emoji: '🪵',
+    images: []
+  },
+  {
+    id: 5, name: 'Ceramic Vase III', cat: 'Objects / Clay',
+    price: 120, salePrice: null, badge: '', emoji: '🏺',
+    images: []
+  },
+  {
+    id: 6, name: 'Office Armchair', cat: 'Seating / Leather',
+    price: 800, salePrice: 650, badge: 'sale', emoji: '🪑',
+    images: []
+  },
+];
+
+let cart        = [];
+let editingId   = null;
+let slideIndex  = {};
+let currentFilter = 'all';
+let currentSearch = '';
+
+/* ============================================================
+   RENDER — PRODUCT CARD HTML
+   ============================================================ */
+function buildCardHTML(p) {
+  const hasImages = p.images && p.images.length > 0;
+  const multiImg  = hasImages && p.images.length > 1;
+
+  let imgHTML;
+  if (hasImages) {
+    imgHTML = `
+      <div class="product-img-wrap" id="wrap-${p.id}">
+        ${p.images.map((src, i) => `
+          <img src="${src}" class="slide-img ${i===0?'active':''}"
+               alt="${p.name} 圖${i+1}" onerror="this.style.display='none'"/>
+        `).join('')}
+        ${multiImg ? `
+          <button class="slide-btn prev" onclick="changeSlide(${p.id},-1)">&#8592;</button>
+          <button class="slide-btn next" onclick="changeSlide(${p.id}, 1)">&#8594;</button>
+          <div class="slide-dots">
+            ${p.images.map((_,i)=>`<span class="dot ${i===0?'active':''}" onclick="goSlide(${p.id},${i})"></span>`).join('')}
+          </div>` : ''}
+      </div>`;
+  } else {
+    imgHTML = `<div class="product-img">${p.emoji}</div>`;
+  }
+
+  const hl = txt => {
+    if (!currentSearch) return txt;
+    return txt.replace(new RegExp(`(${currentSearch.replace(/[.*+?^${}()|[\]\\]/g,'\\<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Defining Space — Industrial Minimalism</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:   #0a0a0a;
+      --white:   #f5f5f0;
+      --gray:    #888;
+      --light:   #e8e8e4;
+      --accent:  #c8a96e;
+      --danger:  #c0392b;
+      --success: #27ae60;
+      --font:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    body { font-family: var(--font); background: var(--white); color: var(--black); }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: var(--font); }
+    img { max-width: 100%; display: block; }
+
+    /* ===== MARQUEE ===== */
+    .marquee-wrap { background: var(--black); color: var(--white); padding: 10px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-track { display: inline-block; animation: marquee 22s linear infinite; }
+    .marquee-track span { margin: 0 32px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 48px; border-bottom: 1px solid var(--light);
+      position: sticky; top: 0; background: var(--white); z-index: 100;
+    }
+    .nav-logo { font-size: 18px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); transition: color .2s; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-actions { display: flex; gap: 20px; align-items: center; }
+    .nav-actions button { background: none; border: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); transition: color .2s; }
+    .nav-actions button:hover { color: var(--black); }
+    .cart-btn { position: relative; }
+    .cart-count {
+      position: absolute; top: -8px; right: -12px;
+      background: var(--accent); color: var(--black);
+      border-radius: 50%; width: 18px; height: 18px;
+      font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700;
+    }
+
+    /* ===== HERO ===== */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; overflow: hidden; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; }
+    .hero-tag { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; }
+    .hero-title { font-size: clamp(40px,5vw,72px); font-weight: 700; line-height: 1.05; letter-spacing: -1px; margin-bottom: 28px; }
+    .hero-sub { font-size: 15px; color: var(--gray); line-height: 1.8; max-width: 380px; margin-bottom: 40px; }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--black); color: var(--white); border: none;
+      padding: 16px 32px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      width: fit-content; transition: background .2s, color .2s;
+    }
+    .hero-cta:hover { background: var(--accent); color: var(--black); }
+    .hero-img-wrap {
+      position: relative; overflow: hidden; background: #d4cfc8;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-placeholder { font-size: 120px; }
+
+    /* ===== SECTION HEADER ===== */
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; padding: 64px 48px 24px; }
+    .section-title { font-size: clamp(24px,3vw,40px); font-weight: 700; letter-spacing: -.5px; }
+    .section-sub { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+    .view-all {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+      background: none; border: none; border-bottom: 1px solid var(--gray); padding-bottom: 2px; transition: color .2s, border-color .2s;
+    }
+    .view-all:hover { color: var(--black); border-color: var(--black); }
+
+    /* ===== FILTER BAR ===== */
+    .filter-bar {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 16px; padding: 0 48px 32px;
+    }
+    .search-wrap { position: relative; display: flex; align-items: center; flex: 1; min-width: 200px; max-width: 320px; }
+    .search-icon { position: absolute; left: 12px; font-size: 14px; pointer-events: none; }
+    .search-input {
+      width: 100%; padding: 10px 36px 10px 36px;
+      border: 1px solid var(--light); background: var(--white);
+      font-size: 13px; font-family: var(--font); letter-spacing: 1px;
+      outline: none; transition: border-color .2s;
+    }
+    .search-input:focus { border-color: var(--black); }
+    .search-clear { position: absolute; right: 10px; background: none; border: none; color: var(--gray); font-size: 13px; display: none; }
+    .search-clear:hover { color: var(--black); }
+    .filter-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      background: none; border: 1px solid var(--light);
+      padding: 8px 18px; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gray); transition: all .2s;
+    }
+    .tag:hover { border-color: var(--black); color: var(--black); }
+    .tag.active { background: var(--black); color: var(--white); border-color: var(--black); }
+    .sort-wrap select {
+      padding: 9px 16px; border: 1px solid var(--light);
+      background: var(--white); font-size: 11px; letter-spacing: 1px;
+      font-family: var(--font); color: var(--gray); outline: none; transition: border-color .2s;
+    }
+    .sort-wrap select:focus { border-color: var(--black); }
+    .filter-result { font-size: 11px; letter-spacing: 1px; color: var(--gray); margin-left: auto; }
+
+    /* ===== PRODUCT GRID ===== */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; padding: 0 48px 80px; }
+    .product-card { position: relative; background: var(--white); border: 1px solid var(--light); overflow: hidden; transition: box-shadow .3s; animation: fadeIn .35s ease; }
+    .product-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .product-badge { position: absolute; top: 16px; left: 16px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 10px; font-weight: 700; z-index: 3; }
+    .badge-new { background: var(--black); color: var(--white); }
+    .badge-sale { background: var(--danger); color: var(--white); }
+    .badge-pre { background: var(--accent); color: var(--black); }
+
+    /* 單圖 */
+    .product-img { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 72px; background: #e8e5e0; transition: transform .4s; overflow: hidden; }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .product-card:hover .product-img img,
+    .product-card:hover .product-img { transform: scale(1.04); }
+
+    /* 多圖輪播 */
+    .product-img-wrap { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; background: #e8e5e0; }
+    .slide-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s ease; }
+    .slide-img.active { opacity: 1; }
+    .slide-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.45); color: #fff; border: none;
+      width: 32px; height: 32px; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .2s; z-index: 3; border-radius: 2px;
+    }
+    .product-img-wrap:hover .slide-btn { opacity: 1; }
+    .slide-btn.prev { left: 8px; }
+    .slide-btn.next { right: 8px; }
+    .slide-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.5); cursor: pointer; transition: background .2s; }
+    .dot.active { background: #fff; }
+
+    /* 商品資訊 */
+    .product-info { padding: 20px 20px 24px; }
+    .product-cat { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+    .product-name { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+    .product-price { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .price-current { font-size: 16px; font-weight: 700; }
+    .price-old { font-size: 13px; color: var(--gray); text-decoration: line-through; }
+    .product-actions { display: flex; gap: 8px; }
+    .btn-add { flex: 1; background: var(--black); color: var(--white); border: none; padding: 12px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; transition: background .2s, color .2s; }
+    .btn-add:hover { background: var(--accent); color: var(--black); }
+    .btn-wish { width: 44px; background: none; border: 1px solid var(--light); font-size: 16px; transition: border-color .2s, color .2s; }
+    .btn-wish:hover { border-color: var(--black); color: var(--danger); }
+    .btn-wish.wished { color: var(--danger); border-color: var(--danger); }
+
+    /* 無結果 */
+    .no-result { grid-column: 1 / -1; text-align: center; padding: 80px 0; color: var(--gray); }
+    .no-result .no-result-icon { font-size: 48px; margin-bottom: 16px; }
+    .no-result p { font-size: 13px; margin-bottom: 20px; }
+    .btn-clear-filter { padding: 10px 24px; border: 1px solid var(--black); background: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: all .2s; }
+    .btn-clear-filter:hover { background: var(--black); color: var(--white); }
+
+    /* ===== BANNER ===== */
+    .banner { background: var(--black); color: var(--white); display: grid; grid-template-columns: 1fr 1fr; min-height: 320px; margin: 0 48px 80px; }
+    .banner-text { padding: 64px 56px; display: flex; flex-direction: column; justify-content: center; }
+    .banner-text h2 { font-size: 36px; font-weight: 700; margin-bottom: 16px; line-height: 1.15; }
+    .banner-text p { color: #aaa; font-size: 14px; line-height: 1.8; margin-bottom: 32px; }
+    .btn-white { display: inline-block; background: var(--white); color: var(--black); padding: 14px 28px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; border: none; width: fit-content; transition: background .2s; }
+    .btn-white:hover { background: var(--accent); }
+    .banner-img { background: #222; display: flex; align-items: center; justify-content: center; font-size: 100px; overflow: hidden; }
+    .banner-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ===== FOOTER ===== */
+    footer { border-top: 1px solid var(--light); padding: 48px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+    .footer-brand h3 { font-size: 16px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-brand p { font-size: 13px; color: var(--gray); line-height: 1.8; max-width: 280px; }
+    .footer-col h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 13px; color: var(--gray); margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: var(--black); }
+    .footer-bottom { border-top: 1px solid var(--light); padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--gray); letter-spacing: 1px; }
+
+    /* ===== CART SIDEBAR ===== */
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 200; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .overlay.open { opacity: 1; pointer-events: all; }
+    .cart-sidebar { position: fixed; top: 0; right: -440px; width: 440px; height: 100vh; background: var(--white); z-index: 201; transition: right .35s ease; display: flex; flex-direction: column; box-shadow: -4px 0 40px rgba(0,0,0,.15); }
+    .cart-sidebar.open { right: 0; }
+    .cart-head { display: flex; justify-content: space-between; align-items: center; padding: 28px 28px 20px; border-bottom: 1px solid var(--light); }
+    .cart-head h2 { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
+    .close-btn { background: none; border: none; font-size: 22px; color: var(--gray); }
+    .close-btn:hover { color: var(--black); }
+    .cart-items { flex: 1; overflow-y: auto; padding: 20px 28px; }
+    .cart-empty { text-align: center; padding: 60px 0; color: var(--gray); font-size: 13px; }
+    .cart-item { display: grid; grid-template-columns: 64px 1fr auto; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--light); }
+    .ci-img { width: 64px; height: 64px; background: #e8e5e0; display: flex; align-items: center; justify-content: center; font-size: 30px; overflow: hidden; }
+    .ci-img img { width: 100%; height: 100%; object-fit: cover; }
+    .ci-name { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .ci-sub { font-size: 11px; color: var(--gray); }
+    .ci-qty { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .ci-qty button { background: none; border: 1px solid var(--light); width: 26px; height: 26px; font-size: 14px; transition: border-color .2s; }
+    .ci-qty button:hover { border-color: var(--black); }
+    .ci-qty span { font-size: 13px; font-weight: 600; min-width: 20px; text-align: center; }
+    .ci-price { font-size: 14px; font-weight: 700; }
+    .ci-remove { background: none; border: none; color: var(--gray); font-size: 11px; margin-top: 6px; display: block; letter-spacing: 1px; }
+    .ci-remove:hover { color: var(--danger); }
+    .cart-foot { padding: 20px 28px 32px; border-top: 1px solid var(--light); }
+    .cart-total { display: flex; justify-content: space-between; margin-bottom: 20px; }
+    .cart-total span:first-child { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+    .cart-total span:last-child { font-size: 20px; font-weight: 700; }
+    .btn-checkout { width: 100%; background: var(--black); color: var(--white); border: none; padding: 18px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; transition: background .2s, color .2s; }
+    .btn-checkout:hover { background: var(--accent); color: var(--black); }
+
+    /* ===== ADMIN PANEL ===== */
+    .admin-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 300; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .admin-overlay.open { opacity: 1; pointer-events: all; }
+    .admin-panel { position: fixed; inset: 0; z-index: 301; background: #111; color: #eee; transform: translateY(100%); transition: transform .4s ease; display: flex; flex-direction: column; }
+    .admin-panel.open { transform: translateY(0); }
+    .admin-nav { display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 60px; background: #0a0a0a; border-bottom: 1px solid #222; flex-shrink: 0; }
+    .admin-nav h1 { font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); }
+    .admin-nav-links { display: flex; gap: 4px; }
+    .admin-tab { background: none; border: none; color: #666; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; transition: color .2s; border-radius: 4px; }
+    .admin-tab:hover { color: #eee; background: #1a1a1a; }
+    .admin-tab.active { color: var(--accent); background: #1a1a1a; }
+    .admin-close { background: none; border: 1px solid #333; color: #666; padding: 6px 14px; font-size: 11px; letter-spacing: 1px; border-radius: 4px; transition: all .2s; }
+    .admin-close:hover { color: #eee; border-color: #555; }
+    .admin-body { flex: 1; overflow-y: auto; padding: 32px; }
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+
+    /* Dashboard */
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 32px; }
+    .stat-card { background: #1a1a1a; border: 1px solid #2a2a2a; padding: 24px; border-radius: 8px; }
+    .stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 10px; }
+    .stat-value { font-size: 32px; font-weight: 700; color: var(--accent); }
+    .stat-sub { font-size: 11px; color: #555; margin-top: 6px; }
+    .recent-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 16px; }
+    .orders-table { width: 100%; border-collapse: collapse; }
+    .orders-table th, .orders-table td { text-align: left; padding: 12px 16px; border-bottom: 1px solid #1f1f1f; font-size: 13px; }
+    .orders-table th { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; }
+    .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10px; letter-spacing: 1px; }
+    .status-paid { background: #1a3a2a; color: var(--success); }
+    .status-pending { background: #3a2a10; color: var(--accent); }
+    .status-shipped { background: #1a2a3a; color: #5aabff; }
+
+    /* Admin Products */
+    .admin-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .admin-toolbar h2 { font-size: 18px; font-weight: 600; }
+    .btn-add-product { background: var(--accent); color: var(--black); border: none; padding: 10px 20px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; transition: opacity .2s; }
+    .btn-add-product:hover { opacity: .85; }
+    .admin-products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 16px; }
+    .admin-product-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; overflow: hidden; }
+    .apc-img { height: 140px; background: #222; display: flex; align-items: center; justify-content: center; font-size: 56px; overflow: hidden; }
+    .apc-img img { width: 100%; height: 100%; object-fit: cover; }
+    .apc-info { padding: 16px; }
+    .apc-name { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .apc-meta { font-size: 11px; color: #555; margin-bottom: 12px; }
+    .apc-price { font-size: 16px; font-weight: 700; color: var(--accent); margin-bottom: 14px; }
+    .apc-actions { display: flex; gap: 8px; }
+    .btn-edit { flex: 1; background: #252525; border: 1px solid #333; color: #aaa; padding: 8px; font-size: 10px; letter-spacing: 1px; border-radius: 4px; transition: all .2s; }
+    .btn-edit:hover { background: #2a2a2a; color: #eee; }
+    .btn-del { background: #2a1515; border: 1px solid #3a2020; color: #c0392b; padding: 8px 12px; font-size: 10px; border-radius: 4px; transition: all .2s; }
+    .btn-del:hover { background: #3a1a1a; }
+
+    /* Modal */
+    .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 400; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-bg.open { display: flex; }
+    .modal { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; width: 520px; max-width: 100%; padding: 32px; max-height: 90vh; overflow-y: auto; }
+    .modal h3 { font-size: 16px; font-weight: 600; margin-bottom: 24px; color: #eee; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 8px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: #111; border: 1px solid #2a2a2a; color: #eee; padding: 10px 14px; font-size: 13px; border-radius: 4px; font-family: var(--font); transition: border-color .2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+    .form-group select option { background: #1a1a1a; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .modal-actions { display: flex; gap: 12px; margin-top: 24px; }
+    .btn-save { flex: 1; background: var(--accent); color: var(--black); border: none; padding: 12px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; }
+    .btn-save:hover { opacity: .85; }
+    .btn-cancel-modal { flex: 1; background: #252525; border: 1px solid #333; color: #aaa; padding: 12px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; }
+    .btn-cancel-modal:hover { color: #eee; }
+    .img-preview-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .img-preview { width: 64px; height: 64px; object-fit: cover; border-radius: 4px; border: 1px solid #2a2a2a; }
+
+    /* Settings */
+    .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 780px; }
+    .settings-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 28px; }
+    .settings-card h3 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 20px; }
+    .btn-save-settings { background: var(--accent); color: var(--black); border: none; padding: 10px 24px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; margin-top: 16px; }
+    .btn-save-settings:hover { opacity: .85; }
+
+    /* Toast */
+    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--black); color: var(--white); padding: 14px 28px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; z-index: 999; transition: transform .3s ease; white-space: nowrap; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-img-wrap { height: 300px; }
+      .hero-text { padding: 48px 28px; }
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .filter-bar, .product-grid, .section-header { padding-left: 24px; padding-right: 24px; }
+      .product-grid { padding-bottom: 48px; }
+      .banner { grid-template-columns: 1fr; margin: 0 24px 60px; }
+      .banner-img { height: 200px; }
+      footer { grid-template-columns: 1fr 1fr; padding: 36px 24px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding: 20px 24px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .admin-body { padding: 20px; }
+      .settings-grid { grid-template-columns: 1fr; }
+      .cart-sidebar { width: 100vw; right: -100vw; }
+      .filter-result { margin-left: 0; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>New Arrivals</span><span>—</span>
+    <span>Shipping Worldwide</span><span>—</span>
+    <span>Industrial Minimalism</span><span>—</span>
+    <span>Curated Objects</span><span>—</span>
+    <span>New Arrivals</span><span>—</span>
+    <span>Shipping Worldwide</span><span>—</span>
+    <span>Industrial Minimalism</span><span>—</span>
+    <span>Curated Objects</span><span>—</span>
+    <span>New Arrivals</span><span>—</span>
+    <span>Shipping Worldwide</span><span>—</span>
+    <span>Industrial Minimalism</span><span>—</span>
+    <span>Curated Objects</span><span>—</span>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="nav-logo">Defining Space</div>
+  <div class="nav-links">
+    <a href="#">Collection</a>
+    <a href="#">Seating</a>
+    <a href="#">Lighting</a>
+    <a href="#">Objects</a>
+    <a href="#">About</a>
+  </div>
+  <div class="nav-actions">
+    <button onclick="openAdmin()">⚙ Admin</button>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-tag">New Collection 2025</p>
+    <h1 class="hero-title">Defining<br>Space.</h1>
+    <p class="hero-sub">Industrial aesthetics for modern living. Each piece is crafted with intention — where function meets minimal beauty.</p>
+    <button class="hero-cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+      Shop Collection →
+    </button>
+  </div>
+  <div class="hero-img-wrap">
+    <!-- 換成您的 Hero 照片路徑 -->
+    <!-- <img src="photos/hero.jpg" alt="Hero"/> -->
+    <div class="hero-placeholder">🪑</div>
+  </div>
+</section>
+
+<!-- ===== SHOP SECTION ===== -->
+<div id="shop">
+  <div class="section-header">
+    <div>
+      <p class="section-sub">Our Selection</p>
+      <h2 class="section-title">Shop Collection</h2>
+    </div>
+    <button class="view-all">View All →</button>
+  </div>
+
+  <!-- 搜尋 + 篩選 -->
+  <div class="filter-bar">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input"
+        placeholder="搜尋商品名稱..."
+        oninput="filterProducts()"/>
+      <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    </div>
+    <div class="filter-tags" id="filterTags">
+      <button class="tag active" onclick="setFilter('all',this)">All</button>
+      <button class="tag" onclick="setFilter('Seating',this)">Seating</button>
+      <button class="tag" onclick="setFilter('Lighting',this)">Lighting</button>
+      <button class="tag" onclick="setFilter('Surface',this)">Surface</button>
+      <button class="tag" onclick="setFilter('Objects',this)">Objects</button>
+    </div>
+    <div class="sort-wrap">
+      <select id="sortSelect" onchange="filterProducts()">
+        <option value="default">排序：預設</option>
+        <option value="price-asc">價格：低 → 高</option>
+        <option value="price-desc">價格：高 → 低</option>
+        <option value="name-asc">名稱：A → Z</option>
+      </select>
+    </div>
+    <div class="filter-result" id="filterResult">共 0 件商品</div>
+  </div>
+
+  <div class="product-grid" id="productGrid"></div>
+</div>
+
+<!-- ===== BANNER ===== -->
+<div class="banner">
+  <div class="banner-text">
+    <h2>Industrial Aesthetics for Modern Living.</h2>
+    <p>Curated objects crafted with intention. Where raw materials meet refined minimalism — built to last, designed to inspire.</p>
+    <button class="btn-white">Explore All Objects</button>
+  </div>
+  <div class="banner-img">
+    <!-- <img src="photos/banner.jpg" alt="Banner"/> -->
+    🏭
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-brand">
+    <h3>Defining Space</h3>
+    <p>Industrial minimalism for the modern home. Shipping worldwide. Each object curated with care.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Shop</h4>
+    <a href="#">Seating</a>
+    <a href="#">Lighting</a>
+    <a href="#">Surfaces</a>
+    <a href="#">Objects</a>
+  </div>
+  <div class="footer-col">
+    <h4>Info</h4>
+    <a href="#">Shipping</a>
+    <a href="#">Returns</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-col">
+    <h4>Follow</h4>
+    <a href="#">Instagram</a>
+    <a href="#">Newsletter</a>
+    <a href="#">Pinterest</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 Defining Space. All rights reserved.</span>
+  <span>Industrial Minimalism — Curated Objects</span>
+</div>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head">
+    <h2>Your Cart</h2>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">Your cart is empty.</div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">$0</span>
+    </div>
+    <button class="btn-checkout" onclick="checkout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div class="admin-overlay" id="adminOverlay"></div>
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-nav">
+    <h1>⚙ Admin Panel</h1>
+    <div class="admin-nav-links">
+      <button class="admin-tab active" onclick="switchTab('dashboard',this)">Dashboard</button>
+      <button class="admin-tab" onclick="switchTab('products',this)">Products</button>
+      <button class="admin-tab" onclick="switchTab('orders',this)">Orders</button>
+      <button class="admin-tab" onclick="switchTab('settings',this)">Settings</button>
+    </div>
+    <button class="admin-close" onclick="closeAdmin()">Close ✕</button>
+  </div>
+  <div class="admin-body">
+
+    <!-- Dashboard -->
+    <div class="admin-section active" id="sec-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Products</div>
+          <div class="stat-value" id="statProducts">0</div>
+          <div class="stat-sub">In catalogue</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Catalogue Value</div>
+          <div class="stat-value" id="statRevenue">$0</div>
+          <div class="stat-sub">Sum of prices</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Cart Items</div>
+          <div class="stat-value" id="statCart">0</div>
+          <div class="stat-sub">Current session</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Orders</div>
+          <div class="stat-value">12</div>
+          <div class="stat-sub">This month</div>
+        </div>
+      </div>
+      <p class="recent-title">Recent Orders</p>
+      <table class="orders-table">
+        <thead><tr><th>Order ID</th><th>Customer</th><th>Item</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>#00124</td><td>Chen Wei</td><td>Lounge Chair 01</td><td>$1,250</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+          <tr><td>#00123</td><td>Sara Kim</td><td>Concrete Lamp</td><td>$320</td><td><span class="status-badge status-shipped">Shipped</span></td></tr>
+          <tr><td>#00122</td><td>Marco R.</td><td>Modular Table</td><td>$950</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+          <tr><td>#00121</td><td>Lisa T.</td><td>Office Armchair</td><td>$650</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Products -->
+    <div class="admin-section" id="sec-products">
+      <div class="admin-toolbar">
+        <h2>Products Management</h2>
+        <button class="btn-add-product" onclick="openModal()">+ Add Product</button>
+      </div>
+      <div class="admin-products-grid" id="adminProductGrid"></div>
+    </div>
+
+    <!-- Orders -->
+    <div class="admin-section" id="sec-orders">
+      <h2 style="margin-bottom:24px;font-size:18px">Order Management</h2>
+      <table class="orders-table" style="background:#1a1a1a;border-radius:8px;overflow:hidden">
+        <thead style="background:#111">
+          <tr><th>Order ID</th><th>Customer</th><th>Item</th><th>Qty</th><th>Amount</th><th>Date</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>#00124</td><td>Chen Wei</td><td>Lounge Chair 01</td><td>1</td><td>$1,250</td><td>2025-07-01</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+          <tr><td>#00123</td><td>Sara Kim</td><td>Concrete Lamp</td><td>2</td><td>$640</td><td>2025-06-30</td><td><span class="status-badge status-shipped">Shipped</span></td></tr>
+          <tr><td>#00122</td><td>Marco R.</td><td>Modular Table</td><td>1</td><td>$950</td><td>2025-06-29</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+          <tr><td>#00121</td><td>Lisa T.</td><td>Office Armchair</td><td>1</td><td>$650</td><td>2025-06-28</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+          <tr><td>#00120</td><td>Tom H.</td><td>Ceramic Vase III</td><td>3</td><td>$360</td><td>2025-06-27</td><td><span class="status-badge status-shipped">Shipped</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Settings -->
+    <div class="admin-section" id="sec-settings">
+      <h2 style="margin-bottom:24px;font-size:18px">Site Settings</h2>
+      <div class="settings-grid">
+        <div class="settings-card">
+          <h3>Store Info</h3>
+          <div class="form-group"><label>Store Name</label><input type="text" value="Defining Space"/></div>
+          <div class="form-group"><label>Tagline</label><input type="text" value="Industrial Minimalism"/></div>
+          <div class="form-group"><label>Contact Email</label><input type="email" value="hello@definingspace.com"/></div>
+          <button class="btn-save-settings" onclick="showToast('設定已儲存 ✓')">Save Changes</button>
+        </div>
+        <div class="settings-card">
+          <h3>Shipping</h3>
+          <div class="form-group"><label>Free Shipping Threshold</label><input type="text" value="$500"/></div>
+          <div class="form-group"><label>Default Currency</label>
+            <select><option>USD ($)</option><option>EUR (€)</option><option>TWD (NT$)</option></select>
+          </div>
+          <div class="form-group"><label>Worldwide Shipping</label>
+            <select><option>Enabled</option><option>Disabled</option></select>
+          </div>
+          <button class="btn-save-settings" onclick="showToast('運送設定已儲存 ✓')">Save Changes</button>
+        </div>
+        <div class="settings-card">
+          <h3>Marquee Text</h3>
+          <div class="form-group"><label>Announcement</label>
+            <textarea id="marqueeText" rows="3">New Arrivals — Shipping Worldwide — Industrial Minimalism — Curated Objects</textarea>
+          </div>
+          <button class="btn-save-settings" onclick="updateMarquee()">Update Marquee</button>
+        </div>
+        <div class="settings-card">
+          <h3>Admin Access</h3>
+          <div class="form-group"><label>Admin Password</label><input type="password" value="admin123"/></div>
+          <div class="form-group"><label>Session Timeout (min)</label><input type="number" value="30"/></div>
+          <button class="btn-save-settings" onclick="showToast('存取設定已儲存 ✓')">Save</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== PRODUCT MODAL ===== -->
+<div class="modal-bg" id="productModal">
+  <div class="modal">
+    <h3 id="modalTitle">Add New Product</h3>
+    <div class="form-row">
+      <div class="form-group"><label>商品名稱 *</label><input type="text" id="pName" placeholder="e.g. Lounge Chair"/></div>
+      <div class="form-group"><label>Emoji（備用）</label><input type="text" id="pEmoji" placeholder="🪑" maxlength="4"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>分類 *</label>
+        <select id="pCat">
+          <option>Seating / Plywood</option>
+          <option>Seating / Leather</option>
+          <option>Seating / Wood</option>
+          <option>Lighting / Cast</option>
+          <option>Surface / Steel</option>
+          <option>Objects / Clay</option>
+        </select>
+      </div>
+      <div class="form-group"><label>標籤</label>
+        <select id="pBadge">
+          <option value="">None</option>
+          <option value="new">New</option>
+          <option value="sale">Sale</option>
+          <option value="pre">Pre-Order</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>售價 ($) *</label><input type="number" id="pPrice" placeholder="1250" min="0"/></div>
+      <div class="form-group"><label>特價 ($)（選填）</label><input type="number" id="pSalePrice" placeholder="留空表示無特價" min="0"/></div>
+    </div>
+    <div class="form-group">
+      <label>照片路徑（每行一張，最多 5 張）</label>
+      <textarea id="pImages" rows="4"
+        placeholder="photos/chair01-a.jpg&#10;photos/chair01-b.jpg&#10;photos/chair01-c.jpg"
+        oninput="previewImages()" style="resize:vertical"></textarea>
+      <div class="img-preview-wrap" id="imgPreviewWrap"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-save" onclick="saveProduct()">Save Product</button>
+      <button class="btn-cancel-modal" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+let products = [
+  {
+    id: 1, name: 'Lounge Chair 01', cat: 'Seating / Plywood',
+    price: 1250, salePrice: null, badge: 'new', emoji: '🪑',
+    images: [
+      /* 'photos/chair01-a.jpg', 'photos/chair01-b.jpg' */
+    ]
+  },
+  {
+    id: 2, name: 'Concrete Lamp', cat: 'Lighting / Cast',
+    price: 320, salePrice: null, badge: '', emoji: '💡',
+    images: []
+  },
+  {
+    id: 3, name: 'Side Chair H', cat: 'Seating / Wood',
+    price: 580, salePrice: null, badge: 'pre', emoji: '🪑',
+    images: []
+  },
+  {
+    id: 4, name: 'Modular Table', cat: 'Surface / Steel',
+    price: 950, salePrice: null, badge: '', emoji: '🪵',
+    images: []
+  },
+  {
+    id: 5, name: 'Ceramic Vase III', cat: 'Objects / Clay',
+    price: 120, salePrice: null, badge: '', emoji: '🏺',
+    images: []
+  },
+  {
+    id: 6, name: 'Office Armchair', cat: 'Seating / Leather',
+    price: 800, salePrice: 650, badge: 'sale', emoji: '🪑',
+    images: []
+  },
+];
+
+let cart        = [];
+let editingId   = null;
+let slideIndex  = {};
+let currentFilter = 'all';
+let currentSearch = '';
+
+/* ============================================================
+   RENDER — PRODUCT CARD HTML
+   ============================================================ */
+function buildCardHTML(p) {
+  const hasImages = p.images && p.images.length > 0;
+  const multiImg  = hasImages && p.images.length > 1;
+
+  let imgHTML;
+  if (hasImages) {
+    imgHTML = `
+      <div class="product-img-wrap" id="wrap-${p.id}">
+        ${p.images.map((src, i) => `
+          <img src="${src}" class="slide-img ${i===0?'active':''}"
+               alt="${p.name} 圖${i+1}" onerror="this.style.display='none'"/>
+        `).join('')}
+        ${multiImg ? `
+          <button class="slide-btn prev" onclick="changeSlide(${p.id},-1)">&#8592;</button>
+          <button class="slide-btn next" onclick="changeSlide(${p.id}, 1)">&#8594;</button>
+          <div class="slide-dots">
+            ${p.images.map((_,i)=>`<span class="dot ${i===0?'active':''}" onclick="goSlide(${p.id},${i})"></span>`).join('')}
+          </div>` : ''}
+      </div>`;
+  } else {
+    imgHTML = `<div class="product-img">${p.emoji}</div>`;
+  }
+
+  const hl = txt => {
+    if (!currentSearch) return txt;
+    return txt.replace(new RegExp(`(${currentSearch.replace(/[.*+?^${}()|[\]\\]/g,'\\
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
